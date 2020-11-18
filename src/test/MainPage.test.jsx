@@ -2,12 +2,12 @@ import React from 'react';
 
 import { render } from '@testing-library/react';
 
-import App from '../pages/App';
+import Mainpage from '../pages/MainPage';
 
-describe('App', () => {
-  it('renders App', () => {
+describe('Mainpage', () => {
+  it('renders Mainpage', () => {
     const { container } = render((
-      <App />
+      <Mainpage />
     ));
     expect(container).toHaveTextContent('Hello');
   });
