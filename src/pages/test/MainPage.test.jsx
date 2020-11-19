@@ -2,7 +2,7 @@ import React from 'react';
 
 import { render } from '@testing-library/react';
 
-import Mainpage from '../pages/MainPage';
+import Mainpage from '../MainPage';
 
 describe('Mainpage', () => {
   it('renders Mainpage', () => {
