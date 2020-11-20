@@ -2,17 +2,21 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const { actions, reducer } = createSlice({
   name: 'application',
-  initialState: {},
+  initialState: {
+    selectedTalent: {
+      frontOrBack: '',
+    },
+  },
   reducers: {
-    initialActions(state, action) {
+    selectTalent(state, { payload: selectedTalent }) {
       return {
         ...state,
-        action,
+        selectedTalent,
       };
     },
   },
 });
 
-export const { initialActions } = actions;
+export const { selectTalent } = actions;
 
 export default reducer;

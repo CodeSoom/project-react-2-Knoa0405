@@ -1,12 +1,8 @@
 import React from 'react';
 
-import styled from '@emotion/styled';
-
 import LogoContainer from '../components/LogoContainer';
 
-const Header = styled.header({
-  height: '100px',
-});
+import Header from './styles/Header';
 
 function MainPage() {
   return (

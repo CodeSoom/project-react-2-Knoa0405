@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Global } from '@emotion/core';
 
-import reset from '../styles/Reset';
+import reset from './styles/Reset';
 
 import MainPage from './MainPage';
 
