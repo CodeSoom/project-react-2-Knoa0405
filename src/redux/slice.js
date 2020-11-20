@@ -8,10 +8,13 @@ const { actions, reducer } = createSlice({
     },
   },
   reducers: {
-    selectTalent(state, { payload: selectedTalent }) {
+    selectTalent(state, { payload: { value } }) {
       return {
         ...state,
-        selectedTalent,
+        selectedTalent: {
+          ...state.selectedTalent,
+          frontOrBack: value,
+        },
       };
     },
   },

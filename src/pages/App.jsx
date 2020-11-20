@@ -17,8 +17,8 @@ function App() {
   return (
     <>
       <Switch>
-        <Route exact path="/" component={MainPage} />
-        <Route path="/talent" component={TalentInputContainer} />
+        {/* <Route exact path="/" component={MainPage} /> */}
+        <Route path="/" component={TalentInputContainer} />
       </Switch>
       <Global styles={reset} />
     </>
