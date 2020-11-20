@@ -2,6 +2,8 @@ import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
+import { Link } from 'react-router-dom';
+
 import {
   selectTalent,
 } from '../redux/slice';
@@ -11,11 +13,13 @@ function TalentInputContainer() {
     selectedTalent: state.selectedTalent,
   }));
 
+  const { frontOrBack } = selectedTalent;
+
   const dispatch = useDispatch();
 
   function handleClick(e) {
-    const { target: { value } } = e;
-    dispatch(selectTalent(value));
+    const { value } = e.target;
+    dispatch(selectTalent({ value }));
   }
 
   return (
@@ -26,7 +30,8 @@ function TalentInputContainer() {
           <li>
             <button
               type="button"
-              onClick={() => handleClick}
+              onClick={handleClick}
+              value="BackEnd"
             >
               백엔드
             </button>
@@ -34,12 +39,16 @@ function TalentInputContainer() {
           <li>
             <button
               type="button"
-              onClick={() => handleClick}
+              onClick={handleClick}
+              value="FrontEnd"
             >
               프론트엔드
             </button>
           </li>
         </ul>
+        <div>
+          <Link to={`/talent/${frontOrBack}`}>다음</Link>
+        </div>
       </div>
     </>
   );
