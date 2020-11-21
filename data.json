@@ -1,0 +1,78 @@
+{
+  "FrontEnd": [
+    {
+      "id": 1,
+      "category": "ReactJs"
+    },
+    {
+      "id": 2,
+      "category": "AngularJs"
+    },
+    {
+      "id": 3,
+      "category": "VueJs"
+    },
+    {
+      "id": 4,
+      "category": "Redux"
+    },
+    {
+      "id": 5,
+      "category": "Redux"
+    },
+    {
+      "id": 6,
+      "category": "HTML/CSS"
+    },
+    {
+      "id": 7,
+      "category": "Javascript"
+    },
+    {
+      "id": 8,
+      "category": "Next.js"
+    },
+    {
+      "id": 9,
+      "category": "Webpack"
+    }
+  ],
+  "BackEnd": [
+    {
+      "id": 1,
+      "category": "Node.js"
+    },
+    {
+      "id": 2,
+      "category": "AWS"
+    },
+    {
+      "id": 3,
+      "category": "DJango"
+    },
+    {
+      "id": 4,
+      "category": "GraphQL"
+    },
+    {
+      "id": 5,
+      "category": "GraphQL"
+    },
+    {
+      "id": 6,
+      "category": "MongoDB"
+    },
+    {
+      "id": 7,
+      "category": "MySQL"
+    },
+    {
+      "id": 8,
+      "category": "SpringBoot"
+    },
+    {
+      "id": 9,
+      "category": "Redis"
+    }
+  ]
+}
