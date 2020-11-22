@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useSelector } from 'react-redux';
 
-function TalentBackEndInputContainer() {
+function TalentFrontEndFormContainer() {
   const { frontEndCategories } = useSelector((state) => ({
     frontEndCategories: state.frontEndCategories,
   }));
@@ -13,7 +13,7 @@ function TalentBackEndInputContainer() {
         <p>프론트엔드 항목을 고르세요</p>
         <ul>
           {frontEndCategories.map(({ id, category }) => (
-            <li key={id}>{category}</li>
+            <li key={id}><button type="button">{category}</button></li>
           ))}
         </ul>
       </div>
@@ -21,4 +21,4 @@ function TalentBackEndInputContainer() {
   );
 }
 
-export default TalentBackEndInputContainer;
+export default TalentFrontEndFormContainer;
