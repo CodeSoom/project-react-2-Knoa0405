@@ -1,11 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import {
+  fetchCategories,
+} from '../services/api';
+
 const { actions, reducer } = createSlice({
   name: 'application',
   initialState: {
     selectedTalent: {
       frontOrBack: '',
     },
+    backEndCategories: [],
+    frontEndCategories: [],
   },
   reducers: {
     selectTalent(state, { payload: { value } }) {
@@ -17,9 +23,27 @@ const { actions, reducer } = createSlice({
         },
       };
     },
+    setCategories(state, { payload: { frontEndCategories, backEndCategories } }) {
+      return {
+        ...state,
+        backEndCategories,
+        frontEndCategories,
+      };
+    },
   },
 });
 
-export const { selectTalent } = actions;
+export const {
+  selectTalent,
+  setCategories,
+} = actions;
+
+export function loadCategories() {
+  return async (dispatch) => {
+    const { frontEndCategories, backEndCategories } = await fetchCategories();
+
+    dispatch(setCategories({ frontEndCategories, backEndCategories }));
+  };
+}
 
 export default reducer;
