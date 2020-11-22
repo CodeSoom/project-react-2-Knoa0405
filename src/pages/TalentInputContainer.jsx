@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -6,16 +6,21 @@ import { Link } from 'react-router-dom';
 
 import {
   selectTalent,
+  loadCategories,
 } from '../redux/slice';
 
 function TalentInputContainer() {
+  const dispatch = useDispatch();
+
   const { selectedTalent } = useSelector((state) => ({
     selectedTalent: state.selectedTalent,
   }));
 
   const { frontOrBack } = selectedTalent;
 
-  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(loadCategories());
+  }, []);
 
   function handleClick(e) {
     const { value } = e.target;
