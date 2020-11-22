@@ -6,11 +6,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { MemoryRouter } from 'react-router-dom';
 
-import TalentInputContainer from '../TalentInputContainer';
+import TalentFormContainer from '../TalentFormContainer';
 
 jest.mock('react-redux');
 
-describe('TalentInputContainer', () => {
+describe('TalentFormContainer', () => {
   const dispatch = useDispatch();
 
   beforeEach(() => {
@@ -23,7 +23,7 @@ describe('TalentInputContainer', () => {
   it('renders buttons', () => {
     const { getByText } = render((
       <MemoryRouter>
-        <TalentInputContainer />
+        <TalentFormContainer />
       </MemoryRouter>
     ));
 

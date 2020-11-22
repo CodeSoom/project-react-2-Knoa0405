@@ -9,7 +9,7 @@ import {
   loadCategories,
 } from '../redux/slice';
 
-function TalentInputContainer() {
+function TalentFormContainer() {
   const dispatch = useDispatch();
 
   const { selectedTalent } = useSelector((state) => ({
@@ -59,4 +59,4 @@ function TalentInputContainer() {
   );
 }
 
-export default TalentInputContainer;
+export default TalentFormContainer;

@@ -11,20 +11,20 @@ import reset from './styles/Reset';
 
 // import MainPage from './MainPage';
 
-import TalentInputContainer from './TalentInputContainer';
+import TalentFormContainer from './TalentFormContainer';
 
-import TalentFrontEndInputContainer from './TalentFrontEndInputContainer';
+import TalentFrontEndFormContainer from './TalentFrontEndFormContainer';
 
-import TalentBackEndInputContainer from './TalentBackEndInputContainer';
+import TalentBackEndFormContainer from './TalentBackEndFormContainer';
 
 function App() {
   return (
     <>
       <Switch>
         {/* <Route exact path="/" component={MainPage} /> */}
-        <Route exact path="/" component={TalentInputContainer} />
-        <Route path="/talent/FrontEnd" component={TalentFrontEndInputContainer} />
-        <Route path="/talent/BackEnd" component={TalentBackEndInputContainer} />
+        <Route exact path="/" component={TalentFormContainer} />
+        <Route path="/talent/FrontEnd" component={TalentFrontEndFormContainer} />
+        <Route path="/talent/BackEnd" component={TalentBackEndFormContainer} />
       </Switch>
       <Global styles={reset} />
     </>
