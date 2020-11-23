@@ -7,6 +7,7 @@ import reducer, {
   setCategories,
   selectCategory,
   loadCategories,
+  selectProficiency,
 } from './slice';
 
 describe('reducer', () => {
@@ -83,6 +84,24 @@ describe('reducer', () => {
       const state = reducer(initialState, selectCategory(category));
 
       expect(state.selectedTalent.selectedCategory).toEqual('ReactJs');
+    });
+  });
+
+  describe('selectProficiency', () => {
+    it('changes select category', () => {
+      const initialState = {
+        selectedTalent: {
+          frontOrBack: '',
+          selectedCategory: '',
+          proficiency: '',
+        },
+      };
+
+      const level = '상';
+
+      const state = reducer(initialState, selectProficiency(level));
+
+      expect(state.selectedTalent.proficiency).toEqual('상');
     });
   });
 });

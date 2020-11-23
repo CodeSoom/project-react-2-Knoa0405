@@ -28,34 +28,32 @@ function TalentFormContainer() {
   }
 
   return (
-    <>
+    <div>
+      <h2>내가 가진 재능을 고르세요!</h2>
+      <ul>
+        <li>
+          <button
+            type="button"
+            onClick={handleClick}
+            value="BackEnd"
+          >
+            백엔드
+          </button>
+        </li>
+        <li>
+          <button
+            type="button"
+            onClick={handleClick}
+            value="FrontEnd"
+          >
+            프론트엔드
+          </button>
+        </li>
+      </ul>
       <div>
-        <h2>내가 가진 재능을 고르세요!</h2>
-        <ul>
-          <li>
-            <button
-              type="button"
-              onClick={handleClick}
-              value="BackEnd"
-            >
-              백엔드
-            </button>
-          </li>
-          <li>
-            <button
-              type="button"
-              onClick={handleClick}
-              value="FrontEnd"
-            >
-              프론트엔드
-            </button>
-          </li>
-        </ul>
-        <div>
-          <Link to={`/talent/${frontOrBack}`}>다음</Link>
-        </div>
+        <Link to={`/talent/${frontOrBack}`}>다음</Link>
       </div>
-    </>
+    </div>
   );
 }
 
