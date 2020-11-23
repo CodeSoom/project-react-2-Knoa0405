@@ -1,4 +1,4 @@
-async function fetchCategories() {
+export async function fetchCategories() {
   const frontUrl = 'http://localhost:4000/FrontEnd';
   const backUrl = 'http://localhost:4000/BackEnd';
 
@@ -11,4 +11,7 @@ async function fetchCategories() {
   return { frontEndCategories, backEndCategories };
 }
 
-export { fetchCategories };
+// TODO : delete this!
+export async function XXX() {
+  //
+}
