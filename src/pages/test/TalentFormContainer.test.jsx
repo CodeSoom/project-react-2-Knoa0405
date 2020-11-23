@@ -11,12 +11,13 @@ import TalentFormContainer from '../TalentFormContainer';
 jest.mock('react-redux');
 
 describe('TalentFormContainer', () => {
-  const dispatch = useDispatch();
+  const dispatch = jest.fn();
 
   beforeEach(() => {
     useSelector.mockImplementation((selector) => selector({
       selectedTalent: {},
     }));
+
     useDispatch.mockImplementation(() => dispatch);
   });
 

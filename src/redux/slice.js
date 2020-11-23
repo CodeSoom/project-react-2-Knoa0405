@@ -9,6 +9,8 @@ const { actions, reducer } = createSlice({
   initialState: {
     selectedTalent: {
       frontOrBack: '',
+      selectedCategory: '',
+      proficiency: '',
     },
     backEndCategories: [],
     frontEndCategories: [],
@@ -30,12 +32,22 @@ const { actions, reducer } = createSlice({
         frontEndCategories,
       };
     },
+    selectCategory(state, { payload: category }) {
+      return {
+        ...state,
+        selectedTalent: {
+          ...state.selectedTalent,
+          selectedCategory: category,
+        },
+      };
+    },
   },
 });
 
 export const {
   selectTalent,
   setCategories,
+  selectCategory,
 } = actions;
 
 export function loadCategories() {
