@@ -25,6 +25,7 @@ const { actions, reducer } = createSlice({
         },
       };
     },
+
     setCategories(state, { payload: { frontEndCategories, backEndCategories } }) {
       return {
         ...state,
@@ -32,12 +33,23 @@ const { actions, reducer } = createSlice({
         frontEndCategories,
       };
     },
+
     selectCategory(state, { payload: category }) {
       return {
         ...state,
         selectedTalent: {
           ...state.selectedTalent,
           selectedCategory: category,
+        },
+      };
+    },
+
+    selectProficiency(state, { payload: level }) {
+      return {
+        ...state,
+        selectedTalent: {
+          ...state.selectedTalent,
+          proficiency: level,
         },
       };
     },
@@ -48,6 +60,7 @@ export const {
   selectTalent,
   setCategories,
   selectCategory,
+  selectProficiency,
 } = actions;
 
 export function loadCategories() {
