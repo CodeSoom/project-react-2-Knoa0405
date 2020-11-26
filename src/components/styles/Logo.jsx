@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
 const Logo = styled.img({
-  width: '50px',
-  height: '50px',
+  width: '10rem',
+  height: '10rem',
 });
 
 export default Logo;

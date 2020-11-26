@@ -1,6 +1,6 @@
 export async function fetchCategories() {
-  const frontUrl = 'http://localhost:4000/FrontEnd';
-  const backUrl = 'http://localhost:4000/BackEnd';
+  const frontUrl = 'http://localhost:4000/frontend';
+  const backUrl = 'http://localhost:4000/backend';
 
   const frontResponse = await fetch(frontUrl);
   const backResponse = await fetch(backUrl);
