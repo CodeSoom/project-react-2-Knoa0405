@@ -9,7 +9,7 @@ import { Global } from '@emotion/core';
 
 import reset from './styles/Reset';
 
-// import MainPage from './MainPage';
+import MainPage from './MainPage';
 
 import TalentFormContainer from './TalentFormContainer';
 
@@ -25,8 +25,8 @@ function App() {
   return (
     <>
       <Switch>
-        {/* <Route exact path="/" component={MainPage} /> */}
-        <Route exact path="/" component={TalentFormContainer} />
+        <Route exact path="/" component={MainPage} />
+        <Route exact path="/talent" component={TalentFormContainer} />
         <Route path="/talent/FrontEnd" component={TalentFrontEndFormContainer} />
         <Route path="/talent/BackEnd" component={TalentBackEndFormContainer} />
         <Route path="/talent/proficiency" component={TalentProficiencyContainer} />

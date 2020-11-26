@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 const Header = styled.header({
-  height: '100px',
+  backgroundColor: '#f4eee8',
 });
 
 export default Header;
