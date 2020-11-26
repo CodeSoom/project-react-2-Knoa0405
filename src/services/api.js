@@ -11,7 +11,12 @@ export async function fetchCategories() {
   return { frontEndCategories, backEndCategories };
 }
 
-// TODO : delete this!
-export async function XXX() {
-  //
+export async function fetchManttoCategories() {
+  const url = 'http://localhost:4000/talents';
+
+  const response = await fetch(url);
+
+  const categories = await response.json();
+
+  return { categories };
 }

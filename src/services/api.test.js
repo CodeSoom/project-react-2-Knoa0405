@@ -1,6 +1,8 @@
 import {
-  fetchCategories,
+  fetchCategories, fetchManttoCategories,
 } from './api';
+
+import manttoCategories from '../fixture/manttoCategories';
 
 describe('api', () => {
   const mockFetch = (data) => {
@@ -28,6 +30,20 @@ describe('api', () => {
         backEndCategories: [{ category: 'NodeJs', id: 1 }],
         frontEndCategories: [{ category: 'ReactJs', id: 1 }],
       });
+    });
+  });
+
+  describe('fetchManttoCategories', () => {
+    beforeEach(() => {
+      mockFetch({
+        manttoCategories,
+      });
+    });
+
+    it('returns categories', async () => {
+      const { categories } = await fetchManttoCategories();
+
+      expect(categories).toEqual({ manttoCategories });
     });
   });
 });

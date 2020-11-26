@@ -3,6 +3,6 @@ export async function fetchCategories() {
 }
 
 // TODO : Delete this !
-export function XXX() {
-  //
+export function fetchManttoCategories() {
+  return {};
 }

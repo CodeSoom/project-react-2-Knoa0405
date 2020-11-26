@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { fireEvent, render } from '@testing-library/react';
+import { render } from '@testing-library/react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -29,27 +29,5 @@ describe('TalentProficiencyContainer', () => {
     ));
 
     expect(container).toHaveTextContent('NodeJs');
-  });
-
-  context('when click level button', () => {
-    const handleClick = jest.fn();
-
-    it('calls handleClick function', () => {
-      const { getByText } = render((
-        <MemoryRouter>
-          <TalentProficiencyContainer />
-        </MemoryRouter>
-      ));
-
-      const levels = ['상', '중', '하'];
-
-      levels.forEach((level) => {
-        expect(getByText(level)).not.toBeNull();
-
-        fireEvent.click(getByText(level));
-
-        expect(handleClick).toBeCalled();
-      });
-    });
   });
 });

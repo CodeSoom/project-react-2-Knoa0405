@@ -8,6 +8,7 @@ import reducer, {
   selectCategory,
   loadCategories,
   selectProficiency,
+  setManttoCategories,
 } from './slice';
 
 describe('reducer', () => {
@@ -20,6 +21,7 @@ describe('reducer', () => {
       },
       backEndCategories: [],
       frontEndCategories: [],
+      manttoCategories: [],
     };
 
     it('returns initialState', () => {
@@ -102,6 +104,36 @@ describe('reducer', () => {
       const state = reducer(initialState, selectProficiency(level));
 
       expect(state.selectedTalent.proficiency).toEqual('상');
+    });
+  });
+
+  describe('setManttoCategories', () => {
+    it('changes mantto categories', () => {
+      const initialState = {
+        manttoCategories: [],
+      };
+
+      const manttoCategories = [
+        {
+          id: 1,
+          nickname: '만또1',
+          talent: {
+            frontOrBack: 'frontEnd',
+            selectedCategory: 'ReactJs',
+            proficiency: '상',
+          },
+          talentToLearn: {
+            frontOrBack: 'backEnd',
+            selectedCategory: 'NodeJs',
+          },
+          email: 'test@example.com',
+          kakaoID: 'tester1',
+        },
+      ];
+
+      const state = reducer(initialState, setManttoCategories(manttoCategories));
+
+      expect(state.manttoCategories).toHaveLength(1);
     });
   });
 });
