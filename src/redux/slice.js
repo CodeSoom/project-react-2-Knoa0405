@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import {
   fetchCategories,
+  fetchManttoCategories,
 } from '../services/api';
 
 const { actions, reducer } = createSlice({
@@ -14,6 +15,7 @@ const { actions, reducer } = createSlice({
     },
     backEndCategories: [],
     frontEndCategories: [],
+    manttoCategories: [],
   },
   reducers: {
     selectTalent(state, { payload: { value } }) {
@@ -53,6 +55,13 @@ const { actions, reducer } = createSlice({
         },
       };
     },
+
+    setManttoCategories(state, { payload: manttoCategories }) {
+      return {
+        ...state,
+        manttoCategories,
+      };
+    },
   },
 });
 
@@ -61,6 +70,7 @@ export const {
   setCategories,
   selectCategory,
   selectProficiency,
+  setManttoCategories,
 } = actions;
 
 export function loadCategories() {
@@ -68,6 +78,14 @@ export function loadCategories() {
     const { frontEndCategories, backEndCategories } = await fetchCategories();
 
     dispatch(setCategories({ frontEndCategories, backEndCategories }));
+  };
+}
+
+export function loadManttoCategories() {
+  return async (dispatch) => {
+    const { categories: manttoCategories } = await fetchManttoCategories();
+
+    dispatch(setManttoCategories(manttoCategories));
   };
 }
 
