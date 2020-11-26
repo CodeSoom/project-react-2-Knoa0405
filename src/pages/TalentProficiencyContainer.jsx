@@ -37,7 +37,7 @@ function TalentProficiencyContainer() {
         ))}
       </ul>
       <div>
-        <Link to="/talent/list">다음</Link>
+        <Link to="/talents">다음</Link>
       </div>
     </div>
   );

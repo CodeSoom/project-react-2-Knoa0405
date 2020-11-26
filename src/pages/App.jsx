@@ -19,6 +19,8 @@ import TalentBackEndFormContainer from './TalentBackEndFormContainer';
 
 import TalentProficiencyContainer from './TalentProficiencyContainer';
 
+import TalentsContainer from './TalentsContainer';
+
 function App() {
   return (
     <>
@@ -28,6 +30,7 @@ function App() {
         <Route path="/talent/FrontEnd" component={TalentFrontEndFormContainer} />
         <Route path="/talent/BackEnd" component={TalentBackEndFormContainer} />
         <Route path="/talent/proficiency" component={TalentProficiencyContainer} />
+        <Route path="/talents" component={TalentsContainer} />
       </Switch>
       <Global styles={reset} />
     </>
