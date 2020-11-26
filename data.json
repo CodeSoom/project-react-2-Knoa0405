@@ -115,7 +115,7 @@
         "proficiency": "중"
       },
       "talentToLearn": {
-        "frontOrBack": "front-end",
+        "frontOrBack": "frontEnd",
         "selectedCategory": "HTML/CSS"
       },
       "email": "test@example.com",
