@@ -27,4 +27,8 @@ module.exports = {
       index: 'index.html',
     },
   },
+  output: {
+    filename: 'main.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
 };

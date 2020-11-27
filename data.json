@@ -1,5 +1,5 @@
 {
-  "frontend": [
+  "frontEnd": [
     {
       "id": 1,
       "category": "ReactJs"
@@ -37,7 +37,7 @@
       "category": "Webpack"
     }
   ],
-  "backend": [
+  "backEnd": [
     {
       "id": 1,
       "category": "Node.js"

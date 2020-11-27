@@ -1,11 +1,13 @@
 import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
+
 import { Link } from 'react-router-dom';
 
 import {
   selectCategory,
 } from '../redux/slice';
+import TalentBackEndForm from './TalentBackEndForm';
 
 function TalentBackEndFormContainer() {
   const dispatch = useDispatch();
@@ -21,18 +23,10 @@ function TalentBackEndFormContainer() {
   return (
     <div>
       <p>백엔드 항목을 고르세요</p>
-      <ul>
-        {backEndCategories.map(({ id, category }) => (
-          <li key={id}>
-            <button
-              type="button"
-              onClick={() => handleClick({ category })}
-            >
-              {category}
-            </button>
-          </li>
-        ))}
-      </ul>
+      <TalentBackEndForm
+        backEndCategories={backEndCategories}
+        onClick={handleClick}
+      />
       <div>
         <Link to="/talent/proficiency">다음</Link>
       </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -30,5 +30,16 @@ describe('TalentFormContainer', () => {
 
     expect(getByText('백엔드')).not.toBeNull();
     expect(getByText('프론트엔드')).not.toBeNull();
+  });
+
+  it('calls select talent dispatch function', () => {
+    const { getByText } = render((
+      <MemoryRouter>
+        <TalentFormContainer />
+      </MemoryRouter>
+    ));
+    fireEvent.click(getByText('백엔드'));
+
+    expect(dispatch).toBeCalledTimes(3);
   });
 });

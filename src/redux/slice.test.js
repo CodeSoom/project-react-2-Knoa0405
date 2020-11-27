@@ -9,19 +9,35 @@ import reducer, {
   loadCategories,
   selectProficiency,
   setManttoCategories,
+  setUserInfo,
+  loadManttoCategories,
+  sendCategory,
 } from './slice';
+
+import manttoCategories from '../fixture/manttoCategories';
+
+import { postCategory } from '../services/api';
 
 describe('reducer', () => {
   context('when state is undefined', () => {
     const initialState = {
+      backEndCategories: [],
+      frontEndCategories: [],
+      manttoCategories: [],
       selectedTalent: {
         frontOrBack: '',
         selectedCategory: '',
         proficiency: '',
       },
-      backEndCategories: [],
-      frontEndCategories: [],
-      manttoCategories: [],
+      selectedTalentToLearn: {
+        frontOrBack: '',
+        selectedCategory: '',
+      },
+      userInfo: {
+        nickname: '',
+        email: '',
+        kakaoID: '',
+      },
     };
 
     it('returns initialState', () => {
@@ -113,27 +129,28 @@ describe('reducer', () => {
         manttoCategories: [],
       };
 
-      const manttoCategories = [
-        {
-          id: 1,
-          nickname: '만또1',
-          talent: {
-            frontOrBack: 'frontEnd',
-            selectedCategory: 'ReactJs',
-            proficiency: '상',
-          },
-          talentToLearn: {
-            frontOrBack: 'backEnd',
-            selectedCategory: 'NodeJs',
-          },
-          email: 'test@example.com',
-          kakaoID: 'tester1',
-        },
-      ];
-
       const state = reducer(initialState, setManttoCategories(manttoCategories));
 
-      expect(state.manttoCategories).toHaveLength(1);
+      expect(state.manttoCategories).toHaveLength(3);
+    });
+    describe('setUserInfo', () => {
+      it('changes user informations', () => {
+        const initialState = {
+          userInfo: {
+            nickname: '',
+            email: '',
+            kakaoID: '',
+          },
+        };
+
+        const state = reducer(initialState, setUserInfo({
+          name: 'nickname', value: '테스터',
+        }));
+
+        expect(state.userInfo.nickname).toEqual('테스터');
+
+        expect(state.userInfo.email).toEqual('');
+      });
     });
   });
 });
@@ -158,6 +175,44 @@ describe('actions', () => {
       const actions = store.getActions();
 
       expect(actions[0]).toEqual(setCategories({}));
+    });
+  });
+
+  describe('loadManttoCategories', () => {
+    beforeEach(() => {
+      store = mockStore({
+        manttoCategories: [],
+      });
+    });
+
+    it('runs setManttoCategories', async () => {
+      await store.dispatch(loadManttoCategories());
+
+      const actions = store.getActions();
+
+      expect(actions[0]).toEqual({
+        type: 'application/setManttoCategories',
+      });
+    });
+  });
+
+  describe('sendCategory', () => {
+    beforeEach(() => {
+      store = mockStore({
+        manttoCategories: [],
+      });
+    });
+
+    it('runs setManttoCategories', async () => {
+      await store.dispatch(sendCategory());
+
+      await postCategory({});
+
+      const actions = store.getActions();
+
+      expect(actions[0]).toEqual({
+        type: 'application/setManttoCategories',
+      });
     });
   });
 });

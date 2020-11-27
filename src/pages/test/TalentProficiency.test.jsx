@@ -7,14 +7,16 @@ import { MemoryRouter } from 'react-router-dom';
 import TalentProficiency from '../TalentProficiency';
 
 describe('TalentProficiency', () => {
-  context('when click level button', () => {
-    const handleClick = jest.fn();
+  const handleSubmit = jest.fn();
+  const handleClick = jest.fn();
 
+  context('when click level button', () => {
     it('calls handleClick function', () => {
       const { getByText } = render((
         <MemoryRouter>
           <TalentProficiency
             onClick={handleClick}
+            onSubmit={handleSubmit}
           />
         </MemoryRouter>
 
@@ -29,6 +31,24 @@ describe('TalentProficiency', () => {
 
         expect(handleClick).toBeCalled();
       });
+    });
+  });
+
+  context('when click "다음" button', () => {
+    it('calls handleSubmit function', () => {
+      const { getByText } = render((
+        <MemoryRouter>
+          <TalentProficiency
+            onClick={handleClick}
+            onSubmit={handleSubmit}
+          />
+        </MemoryRouter>
+      ));
+      expect(getByText('다음')).not.toBeNull();
+
+      fireEvent.click(getByText('다음'));
+
+      expect(handleSubmit).toBeCalled();
     });
   });
 });

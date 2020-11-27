@@ -1,10 +1,9 @@
 import React from 'react';
-
 import { Link } from 'react-router-dom';
 
-function TalentProficiency({ selectedCategory, onClick }) {
+function TalentProficiency({ selectedCategory, onClick, onSubmit }) {
   return (
-    <div>
+    <>
       <p>해당 재능의 숙련도를 고르세요</p>
       <p>{selectedCategory}</p>
       <ul>
@@ -20,9 +19,16 @@ function TalentProficiency({ selectedCategory, onClick }) {
         ))}
       </ul>
       <div>
-        <Link to="/talents">다음</Link>
+        <Link to="/talents">
+          <button
+            type="button"
+            onClick={onSubmit}
+          >
+            다음
+          </button>
+        </Link>
       </div>
-    </div>
+    </>
   );
 }
 
