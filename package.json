@@ -10,7 +10,8 @@
     "test:e2e": "codeceptjs run --steps",
     "test": "npm run coverage && start-server-and-test start http://localhost:8080 test:e2e",
     "lint": "eslint --ext js,jsx .",
-    "json-server": "json-server ./data.json --port 4000"
+    "json-server": "json-server ./data.json --port 4000",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
