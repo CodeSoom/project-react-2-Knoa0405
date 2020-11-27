@@ -8,7 +8,7 @@ export default function TalentButtonContainer() {
   return (
     <>
       <TalentInputButton>
-        <Link to="/talent">재능 입력</Link>
+        <Link to="/userInfo">재능 입력</Link>
       </TalentInputButton>
       <TalentInputButton>
         <Link to="/talents">재능 목록</Link>

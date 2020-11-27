@@ -3,19 +3,29 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   fetchCategories,
   fetchManttoCategories,
+  postCategory,
 } from '../services/api';
 
 const { actions, reducer } = createSlice({
   name: 'application',
   initialState: {
+    backEndCategories: [],
+    frontEndCategories: [],
+    manttoCategories: [],
     selectedTalent: {
       frontOrBack: '',
       selectedCategory: '',
       proficiency: '',
     },
-    backEndCategories: [],
-    frontEndCategories: [],
-    manttoCategories: [],
+    selectedTalentToLearn: {
+      frontOrBack: '',
+      selectedCategory: '',
+    },
+    userInfo: {
+      nickname: '',
+      email: '',
+      kakaoID: '',
+    },
   },
   reducers: {
     selectTalent(state, { payload: { value } }) {
@@ -62,6 +72,16 @@ const { actions, reducer } = createSlice({
         manttoCategories,
       };
     },
+
+    setUserInfo(state, { payload: { name, value } }) {
+      return {
+        ...state,
+        userInfo: {
+          ...state.userInfo,
+          [name]: value,
+        },
+      };
+    },
   },
 });
 
@@ -71,6 +91,7 @@ export const {
   selectCategory,
   selectProficiency,
   setManttoCategories,
+  setUserInfo,
 } = actions;
 
 export function loadCategories() {
@@ -86,6 +107,18 @@ export function loadManttoCategories() {
     const { categories: manttoCategories } = await fetchManttoCategories();
 
     dispatch(setManttoCategories(manttoCategories));
+  };
+}
+
+export function sendCategory() {
+  return async (dispatch, getState) => {
+    const { selectedTalent, selectedTalentToLearn, userInfo } = getState();
+
+    await postCategory({
+      selectedTalent, selectedTalentToLearn, userInfo,
+    });
+
+    dispatch(loadManttoCategories());
   };
 }
 

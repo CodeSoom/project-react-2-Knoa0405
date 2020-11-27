@@ -7,6 +7,8 @@ import {
   selectCategory,
 } from '../redux/slice';
 
+import TalentFrontEndForm from './TalentFrontEndForm';
+
 function TalentFrontEndFormContainer() {
   const dispatch = useDispatch();
 
@@ -21,18 +23,10 @@ function TalentFrontEndFormContainer() {
   return (
     <div>
       <p>프론트엔드 항목을 고르세요</p>
-      <ul>
-        {frontEndCategories.map(({ id, category }) => (
-          <li key={id}>
-            <button
-              type="button"
-              onClick={() => handleClick({ category })}
-            >
-              {category}
-            </button>
-          </li>
-        ))}
-      </ul>
+      <TalentFrontEndForm
+        frontEndCategories={frontEndCategories}
+        onClick={handleClick}
+      />
       <div>
         <Link to="/talent/proficiency">다음</Link>
       </div>

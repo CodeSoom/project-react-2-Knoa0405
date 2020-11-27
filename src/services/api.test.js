@@ -1,5 +1,5 @@
 import {
-  fetchCategories, fetchManttoCategories,
+  fetchCategories, fetchManttoCategories, postCategory,
 } from './api';
 
 import manttoCategories from '../fixture/manttoCategories';
@@ -44,6 +44,20 @@ describe('api', () => {
       const { categories } = await fetchManttoCategories();
 
       expect(categories).toEqual({ manttoCategories });
+    });
+  });
+
+  describe('postCategory', () => {
+    beforeEach(() => {
+      mockFetch();
+    });
+
+    it('returns nothing', async () => {
+      const result = await postCategory({
+        selectedTalent: {}, selectedTalentToLearn: {}, userInfo: {},
+      });
+
+      expect(result).toBeUndefined();
     });
   });
 });

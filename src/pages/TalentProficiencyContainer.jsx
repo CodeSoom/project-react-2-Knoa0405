@@ -2,7 +2,9 @@ import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { selectProficiency } from '../redux/slice';
+import {
+  selectProficiency, sendCategory,
+} from '../redux/slice';
 
 import TalentProficiency from './TalentProficiency';
 
@@ -20,10 +22,15 @@ function TalentProficiencyContainer() {
     dispatch(selectProficiency(level));
   }
 
+  function handleSubmit() {
+    dispatch(sendCategory());
+  }
+
   return (
     <TalentProficiency
       selectedCategory={selectedCategory}
       onClick={handleClick}
+      onSubmit={handleSubmit}
     />
   );
 }
