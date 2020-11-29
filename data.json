@@ -120,6 +120,51 @@
       },
       "email": "test@example.com",
       "kakaoID": "tester1"
+    },
+    {
+      "id": "aa6fa0e2-87df-4136-a3a7-5a78edc9ee2e",
+      "nickname": "",
+      "talent": {
+        "frontOrBack": "frontEnd",
+        "selectedCategory": "Gatsby",
+        "proficiency": "중"
+      },
+      "talentToLearn": {
+        "frontOrBack": "",
+        "selectedCategory": ""
+      },
+      "email": "",
+      "kakaoID": ""
+    },
+    {
+      "id": "49b1ed12-1cb7-4d2c-9d55-952dd3c9ff16",
+      "nickname": "",
+      "talent": {
+        "frontOrBack": "frontEnd",
+        "selectedCategory": "Gatsby",
+        "proficiency": "중"
+      },
+      "talentToLearn": {
+        "frontOrBack": "",
+        "selectedCategory": ""
+      },
+      "email": "",
+      "kakaoID": ""
+    },
+    {
+      "id": "1738222d-0922-41f1-8179-fdae53e8a934",
+      "nickname": "tetet",
+      "talent": {
+        "frontOrBack": "backEnd",
+        "selectedCategory": "MySQL",
+        "proficiency": "중"
+      },
+      "talentToLearn": {
+        "frontOrBack": "",
+        "selectedCategory": ""
+      },
+      "email": "wowgod000006@gmail.com",
+      "kakaoID": "wetwet"
     }
   ]
 }

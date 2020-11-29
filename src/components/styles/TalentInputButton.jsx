@@ -1,28 +1,33 @@
 import styled from '@emotion/styled';
 
-const TalentInputButton = styled.div({
+const TalentInputButton = styled.button({
+  textAlign: 'center',
+  marginTop: '1rem',
   width: '8rem',
   height: '3rem',
-  border: '1px solid #000',
+  border: '2px solid #080040',
   borderRadius: '10px',
-  textAlign: 'center',
-  paddingTop: '0.6rem',
-  marginTop: '1rem',
+  backgroundColor: '#FFF',
   '& a': {
-    display: 'block',
-    width: '100%',
-    height: '100%',
-    color: '#080040',
     fontSize: '1.2rem',
     fontWeight: '700',
     textDecoration: 'none',
+    display: 'block',
+    paddingTop: '0.6rem',
+    width: '100%',
+    height: '100%',
+    borderRadius: '7px',
+    color: '#080040',
     '&:hover': {
       color: '#f6f6f8',
+      borderColor: '#FFF',
+      backgroundColor: '#080040',
     },
   },
-  '&:hover': {
+  '&:focus': {
+    color: '#f6f6f8',
     backgroundColor: '#080040',
-    fontSize: '1.25rem',
+    outline: 0,
   },
 });
 

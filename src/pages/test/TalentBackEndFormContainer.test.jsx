@@ -37,7 +37,9 @@ describe('TalentBackEndFormContainer', () => {
     ];
 
     backEndCategories.forEach(({ category }) => {
-      expect(getByText(category)).not.toBeNull();
+      const regex = new RegExp(`${category}`);
+
+      expect(getByText(regex)).not.toBeNull();
     });
   });
 
@@ -49,7 +51,7 @@ describe('TalentBackEndFormContainer', () => {
         </MemoryRouter>
       ));
 
-      fireEvent.click(getByText('NodeJs'));
+      fireEvent.click(getByText(/NodeJs/));
 
       expect(dispatch).toBeCalled();
     });

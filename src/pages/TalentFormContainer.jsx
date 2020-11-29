@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Link } from 'react-router-dom';
+import styled from '@emotion/styled';
 
 import {
   selectTalent,
@@ -10,6 +10,16 @@ import {
 } from '../redux/slice';
 
 import TalentForm from './TalentForm';
+
+import Title from '../components/styles/Title';
+
+import NextButtonContainer from '../components/NextButtonContainer';
+
+const FormLayout = styled.div({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+});
 
 function TalentFormContainer() {
   const dispatch = useDispatch();
@@ -30,13 +40,13 @@ function TalentFormContainer() {
   }
 
   return (
-    <div>
-      <h2>내가 가진 재능을 고르세요!</h2>
+    <FormLayout>
+      <Title>내가 가진 재능을 고르세요!</Title>
       <TalentForm onClick={handleClick} />
       <div>
-        <Link to={`/talent/${frontOrBack}`}>다음</Link>
+        <NextButtonContainer link={`talent/${frontOrBack}`} />
       </div>
-    </div>
+    </FormLayout>
   );
 }
 

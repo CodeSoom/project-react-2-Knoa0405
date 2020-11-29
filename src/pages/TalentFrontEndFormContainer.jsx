@@ -1,13 +1,16 @@
 import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+
+import NextButtonContainer from '../components/NextButtonContainer';
 
 import {
   selectCategory,
 } from '../redux/slice';
 
 import TalentFrontEndForm from './TalentFrontEndForm';
+
+import Title from '../components/styles/Title';
 
 function TalentFrontEndFormContainer() {
   const dispatch = useDispatch();
@@ -21,16 +24,16 @@ function TalentFrontEndFormContainer() {
   }
 
   return (
-    <div>
-      <p>프론트엔드 항목을 고르세요</p>
+    <>
+      <Title>프론트엔드 항목을 고르세요</Title>
       <TalentFrontEndForm
         frontEndCategories={frontEndCategories}
         onClick={handleClick}
       />
       <div>
-        <Link to="/talent/proficiency">다음</Link>
+        <NextButtonContainer link="talent/proficiency" />
       </div>
-    </div>
+    </>
   );
 }
 
