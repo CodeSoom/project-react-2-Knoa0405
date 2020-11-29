@@ -17,7 +17,9 @@ describe('TalentFrontEndForm', () => {
     ));
 
     frontEndCategories.forEach(({ category }) => {
-      expect(getByText(category)).not.toBeNull();
+      const regex = new RegExp(`${category}`);
+
+      expect(getByText(regex)).not.toBeNull();
     });
   });
 
@@ -32,7 +34,7 @@ describe('TalentFrontEndForm', () => {
         />
       ));
 
-      fireEvent.click(getByText('ReactJs'));
+      fireEvent.click(getByText(/ReactJs/));
 
       expect(handleClick).toBeCalled();
     });

@@ -7,20 +7,14 @@ import styled from '@emotion/styled';
 import {
   loadManttoCategories,
 } from '../redux/slice';
+
 import InfoContainer from '../components/InfoContainer';
+
+import PageLayout from './styles/PageLayout';
 
 const ManttoTitle = styled.h1({
   fontSize: '30px',
   fontWeight: '700',
-});
-
-const TalentContainerLayout = styled.div({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-  width: '100%',
-  height: '100%',
 });
 
 const ManttoCategories = styled.ul({
@@ -46,7 +40,7 @@ export default function TalentsContainer() {
   const { frontOrBack, selectedCategory, proficiency } = selectedTalent;
 
   return (
-    <TalentContainerLayout>
+    <>
       <ManttoTitle>Mantto Talents</ManttoTitle>
       <ManttoCategories>
         {manttoCategories.map(({
@@ -66,6 +60,6 @@ export default function TalentsContainer() {
       <p>{frontOrBack}</p>
       <p>{selectedCategory}</p>
       <p>{proficiency}</p>
-    </TalentContainerLayout>
+    </>
   );
 }

@@ -1,20 +1,26 @@
 import React from 'react';
 
+import List from '../components/styles/List';
+
+import Item from '../components/styles/Item';
+
+import CategoryButton from '../components/styles/CategoryButton';
+
 function TalentFrontEndForm({ frontEndCategories, onClick }) {
   return (
     <>
-      <ul>
+      <List>
         {frontEndCategories.map(({ id, category }) => (
-          <li key={id}>
-            <button
+          <Item key={id}>
+            <CategoryButton
               type="button"
               onClick={() => onClick({ category })}
             >
               {category}
-            </button>
-          </li>
+            </CategoryButton>
+          </Item>
         ))}
-      </ul>
+      </List>
     </>
   );
 }

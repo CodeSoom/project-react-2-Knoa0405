@@ -45,13 +45,15 @@ describe('TalentProficiencyContainer', () => {
   });
 
   it('calls send category dispatch functions', () => {
-    const { getByText } = render((
+    const { container } = render((
       <MemoryRouter>
         <TalentProficiencyContainer />
       </MemoryRouter>
     ));
 
-    fireEvent.click(getByText('다음'));
+    const button = container.querySelector('a[href="/talents"]');
+
+    fireEvent.click(button);
 
     expect(dispatch).toBeCalledTimes(1);
   });

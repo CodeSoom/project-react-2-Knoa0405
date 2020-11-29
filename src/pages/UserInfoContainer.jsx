@@ -2,23 +2,15 @@ import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Link } from 'react-router-dom';
-
-import styled from '@emotion/styled';
 import {
   setUserInfo,
 } from '../redux/slice';
 
 import UserInfo from './UserInfo';
 
-const UserInfoLayout = styled.div({
-  width: '100vw',
-  height: '100vh',
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center',
-});
+import Title from '../components/styles/Title';
+
+import NextButtonContainer from '../components/NextButtonContainer';
 
 function UserInfoContainer() {
   const dispatch = useDispatch();
@@ -34,16 +26,14 @@ function UserInfoContainer() {
   }
 
   return (
-    <UserInfoLayout>
-      <p>간단 정보 입력</p>
+    <>
+      <Title>간단 정보 입력</Title>
       <UserInfo
         userInfo={userInfo}
         onChange={handleChange}
       />
-      <div>
-        <Link to="/talent">다음</Link>
-      </div>
-    </UserInfoLayout>
+      <NextButtonContainer link="talent" />
+    </>
   );
 }
 

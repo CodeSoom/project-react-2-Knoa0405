@@ -1,6 +1,8 @@
 import { css } from '@emotion/core';
 
 const reset = css`
+  @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+
   * {
     margin: 0;
     padding: 0;
@@ -9,6 +11,9 @@ const reset = css`
     font: inherit;
     vertical-align: baseline;
     box-sizing : border-box;
+  }
+  #app {
+    font-family: 'Do Hyeon', sans-serif;
   }
 `;
 

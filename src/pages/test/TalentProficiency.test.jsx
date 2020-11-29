@@ -36,7 +36,7 @@ describe('TalentProficiency', () => {
 
   context('when click "다음" button', () => {
     it('calls handleSubmit function', () => {
-      const { getByText } = render((
+      const { container } = render((
         <MemoryRouter>
           <TalentProficiency
             onClick={handleClick}
@@ -44,9 +44,10 @@ describe('TalentProficiency', () => {
           />
         </MemoryRouter>
       ));
-      expect(getByText('다음')).not.toBeNull();
 
-      fireEvent.click(getByText('다음'));
+      const button = container.querySelector('a[href="/talents"]');
+
+      fireEvent.click(button);
 
       expect(handleSubmit).toBeCalled();
     });
