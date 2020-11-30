@@ -45,6 +45,7 @@ function App() {
         {/* <Route exact path="/talent/:category" component={TalentFormContainer} /> */}
         <Route path="/talent/FrontEnd" component={TalentFrontEndFormContainer} />
         <Route path="/talent/BackEnd" component={TalentBackEndFormContainer} />
+        <Route path="/talent/BackEnd" component={TalentBackEndFormContainer} />
         <Route path="/talent/proficiency" component={TalentProficiencyContainer} />
         <Route path="/talents" component={TalentsContainer} />
       </Switch>

@@ -16,6 +16,7 @@ function TalentFrontEndForm({ frontEndCategories, onClick }) {
               type="button"
               onClick={() => onClick({ category })}
             >
+              #
               {category}
             </CategoryButton>
           </Item>
