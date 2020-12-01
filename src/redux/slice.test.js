@@ -23,7 +23,7 @@ describe('reducer', () => {
     const initialState = {
       backEndCategories: [],
       frontEndCategories: [],
-      manttoCategories: [],
+      manttoCategories: {},
       selectedTalent: {
         frontOrBack: '',
         selectedCategory: '',
