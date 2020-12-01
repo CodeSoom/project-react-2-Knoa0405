@@ -11,9 +11,7 @@ export async function fetchCategories() {
 }
 
 export async function fetchManttoCategories() {
-  const url = process.env.talentsUrl;
-
-  const response = await fetch(url);
+  const response = await fetch(process.env.talentsUrl);
 
   const categories = await response.json();
 
@@ -23,9 +21,7 @@ export async function fetchManttoCategories() {
 export async function postCategory({
   selectedTalent, selectedTalentToLearn, userInfo,
 }) {
-  const url = process.env.talentsUrl;
-
-  const response = await fetch(url, {
+  const response = await fetch(process.env.talentsUrl, {
     method: 'POST',
     headers: {
       'Content-type': 'application/json',
