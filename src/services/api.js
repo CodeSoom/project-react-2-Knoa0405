@@ -1,11 +1,8 @@
 import { v4 as uuidv4 } from 'uuid';
 
 export async function fetchCategories() {
-  const frontUrl = 'http://localhost:4000/frontend';
-  const backUrl = 'http://localhost:4000/backend';
-
-  const frontResponse = await fetch(frontUrl);
-  const backResponse = await fetch(backUrl);
+  const frontResponse = await fetch(process.env.frontUrl);
+  const backResponse = await fetch(process.env.backUrl);
 
   const frontEndCategories = await frontResponse.json();
   const backEndCategories = await backResponse.json();
@@ -14,7 +11,7 @@ export async function fetchCategories() {
 }
 
 export async function fetchManttoCategories() {
-  const url = 'http://localhost:4000/talents';
+  const url = process.env.talentsUrl;
 
   const response = await fetch(url);
 
@@ -26,7 +23,7 @@ export async function fetchManttoCategories() {
 export async function postCategory({
   selectedTalent, selectedTalentToLearn, userInfo,
 }) {
-  const url = 'http://localhost:4000/talents';
+  const url = process.env.talentsUrl;
 
   const response = await fetch(url, {
     method: 'POST',

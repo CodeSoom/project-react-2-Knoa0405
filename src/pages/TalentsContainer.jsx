@@ -10,8 +10,6 @@ import {
 
 import InfoContainer from '../components/InfoContainer';
 
-import PageLayout from './styles/PageLayout';
-
 const ManttoTitle = styled.h1({
   fontSize: '30px',
   fontWeight: '700',
@@ -43,10 +41,10 @@ export default function TalentsContainer() {
     <>
       <ManttoTitle>Mantto Talents</ManttoTitle>
       <ManttoCategories>
-        {manttoCategories.map(({
-          id, nickname, talent, talentToLearn, email, kakaoID,
-        }) => (
-          <ManttoCategory key={id}>
+        {Object.entries(manttoCategories).map(([key, {
+          nickname, talent, talentToLearn, email, kakaoID,
+        }]) => (
+          <ManttoCategory key={key}>
             <InfoContainer
               nickname={nickname}
               talent={talent}

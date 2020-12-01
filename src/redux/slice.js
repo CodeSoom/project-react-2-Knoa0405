@@ -11,7 +11,7 @@ const { actions, reducer } = createSlice({
   initialState: {
     backEndCategories: [],
     frontEndCategories: [],
-    manttoCategories: [],
+    manttoCategories: {},
     selectedTalent: {
       frontOrBack: '',
       selectedCategory: '',
