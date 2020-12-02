@@ -37,6 +37,7 @@ export async function postCategory({
       },
       email: userInfo.email,
       kakaoID: userInfo.kakaoID,
+      timeStamp: Date.now(),
     }),
   });
 

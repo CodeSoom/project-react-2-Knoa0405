@@ -29,7 +29,9 @@ function CategoriesFormContainer({ params }) {
     if (talentOrPassion === 'passion') {
       dispatch(selectPassionCategory(category));
     }
-    dispatch(selectTalentCategory(category));
+    if (talentOrPassion === 'talent') {
+      dispatch(selectTalentCategory(category));
+    }
   }
 
   function handleSubmit() {

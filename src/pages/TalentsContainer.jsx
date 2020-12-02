@@ -26,16 +26,26 @@ const ManttoCategory = styled.li({
 export default function TalentsContainer() {
   const dispatch = useDispatch();
 
-  const { selectedTalent, manttoCategories } = useSelector((state) => ({
-    selectedTalent: state.selectedTalent,
+  const { CategoriesIsLoading, manttoCategories = [] } = useSelector((state) => ({
     manttoCategories: state.manttoCategories,
+    CategoriesIsLoading: state.CategoriesIsLoading,
   }));
 
   useEffect(() => {
     dispatch(loadManttoCategories());
   }, []);
 
-  const { frontOrBack, selectedCategory, proficiency } = selectedTalent;
+  if (CategoriesIsLoading) {
+    return (
+      <p>로딩중..!</p>
+    );
+  }
+
+  if (manttoCategories === null) {
+    return (
+      <p>잠시 기달</p>
+    );
+  }
 
   return (
     <>
@@ -55,9 +65,6 @@ export default function TalentsContainer() {
           </ManttoCategory>
         ))}
       </ManttoCategories>
-      <p>{frontOrBack}</p>
-      <p>{selectedCategory}</p>
-      <p>{proficiency}</p>
     </>
   );
 }
