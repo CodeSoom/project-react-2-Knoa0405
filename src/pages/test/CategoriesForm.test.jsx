@@ -2,16 +2,16 @@ import React from 'react';
 
 import { fireEvent, render } from '@testing-library/react';
 
-import TalentFrontEndForm from '../TalentFrontEndForm';
+import CategoriesForm from '../CategoriesForm';
 
-describe('TalentFrontEndForm', () => {
+describe('CategoriesForm', () => {
   const frontEndCategories = [
     { id: 1, category: 'ReactJs' },
     { id: 2, category: 'VueJs' },
   ];
   it('renders backEnd categories', () => {
     const { getByText } = render((
-      <TalentFrontEndForm
+      <CategoriesForm
         frontEndCategories={frontEndCategories}
       />
     ));
@@ -28,7 +28,7 @@ describe('TalentFrontEndForm', () => {
 
     it('calls handleClick function', () => {
       const { getByText } = render((
-        <TalentFrontEndForm
+        <CategoriesForm
           frontEndCategories={frontEndCategories}
           onClick={handleClick}
         />

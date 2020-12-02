@@ -5,9 +5,9 @@ import configureStore from 'redux-mock-store';
 import reducer, {
   selectTalent,
   setCategories,
-  selectCategory,
+  selectTalentCategory,
   loadCategories,
-  selectProficiency,
+  selectTalentProficiency,
   setManttoCategories,
   setUserInfo,
   loadManttoCategories,
@@ -87,7 +87,7 @@ describe('reducer', () => {
     });
   });
 
-  describe('selectCategory', () => {
+  describe('selectTalentCategory', () => {
     it('changes select category', () => {
       const initialState = {
         selectedTalent: {
@@ -99,13 +99,13 @@ describe('reducer', () => {
 
       const category = 'ReactJs';
 
-      const state = reducer(initialState, selectCategory(category));
+      const state = reducer(initialState, selectTalentCategory(category));
 
       expect(state.selectedTalent.selectedCategory).toEqual('ReactJs');
     });
   });
 
-  describe('selectProficiency', () => {
+  describe('selectTalentProficiency', () => {
     it('changes select category', () => {
       const initialState = {
         selectedTalent: {
@@ -117,7 +117,7 @@ describe('reducer', () => {
 
       const level = '상';
 
-      const state = reducer(initialState, selectProficiency(level));
+      const state = reducer(initialState, selectTalentProficiency(level));
 
       expect(state.selectedTalent.proficiency).toEqual('상');
     });

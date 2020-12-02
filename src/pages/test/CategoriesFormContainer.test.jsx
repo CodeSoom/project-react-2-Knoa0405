@@ -6,11 +6,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { MemoryRouter } from 'react-router-dom';
 
-import TalentFrontEndFormContainer from '../TalentFrontEndFormContainer';
+import CategoriesFormContainer from '../CategoriesFormContainer';
 
 jest.mock('react-redux');
 
-describe('TalentFrontEndFormContainer', () => {
+describe('CategoriesFormContainer', () => {
   const dispatch = jest.fn();
 
   beforeEach(() => {
@@ -27,7 +27,7 @@ describe('TalentFrontEndFormContainer', () => {
   it('renders frontEnd categories', () => {
     const { getByText } = render((
       <MemoryRouter>
-        <TalentFrontEndFormContainer />
+        <CategoriesFormContainer />
       </MemoryRouter>
     ));
 
@@ -47,7 +47,7 @@ describe('TalentFrontEndFormContainer', () => {
     it('calls select category dispatch function', () => {
       const { getByText } = render((
         <MemoryRouter>
-          <TalentFrontEndFormContainer />
+          <CategoriesFormContainer />
         </MemoryRouter>
       ));
 

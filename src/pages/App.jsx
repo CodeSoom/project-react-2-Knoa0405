@@ -15,9 +15,7 @@ import UserInfoContainer from './UserInfoContainer';
 
 import TalentFormContainer from './TalentFormContainer';
 
-import TalentFrontEndFormContainer from './TalentFrontEndFormContainer';
-
-import TalentBackEndFormContainer from './TalentBackEndFormContainer';
+import TalentCategoriesFormContainer from './TalentCategoriesFormContainer';
 
 import TalentProficiencyContainer from './TalentProficiencyContainer';
 
@@ -40,14 +38,11 @@ function App() {
       </Header>
       <Switch>
         <Route exact path="/" component={MainPage} />
-        <Route path="/userInfo" component={UserInfoContainer} />
-        <Route exact path="/talent" component={TalentFormContainer} />
-        {/* <Route exact path="/talent/:category" component={TalentFormContainer} /> */}
-        <Route path="/talent/FrontEnd" component={TalentFrontEndFormContainer} />
-        <Route path="/talent/BackEnd" component={TalentBackEndFormContainer} />
-        <Route path="/talent/BackEnd" component={TalentBackEndFormContainer} />
-        <Route path="/talent/proficiency" component={TalentProficiencyContainer} />
+        <Route exact path="/userInfo" component={UserInfoContainer} />
+        <Route exact path="/talent/proficiency" component={TalentProficiencyContainer} />
         <Route path="/talents" component={TalentsContainer} />
+        <Route exact path="/:talentOrPassion/:categoryUrl" component={TalentCategoriesFormContainer} />
+        <Route path="/:talentOrPassion" component={TalentFormContainer} />
       </Switch>
       <Global styles={reset} />
     </PageLayout>

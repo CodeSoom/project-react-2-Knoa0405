@@ -9,8 +9,14 @@ import {
 const { actions, reducer } = createSlice({
   name: 'application',
   initialState: {
-    backEndCategories: [],
-    frontEndCategories: [],
+    categories: {
+      backEnd: {
+        백엔드: [],
+      },
+      frontEnd: {
+        프론트엔드: [],
+      },
+    },
     manttoCategories: {},
     selectedTalent: {
       frontOrBack: '',
@@ -38,15 +44,31 @@ const { actions, reducer } = createSlice({
       };
     },
 
-    setCategories(state, { payload: { frontEndCategories, backEndCategories } }) {
+    selectPassion(state, { payload: { value } }) {
       return {
         ...state,
-        backEndCategories,
-        frontEndCategories,
+        selectedTalentToLearn: {
+          ...state.selectedTalentToLearn,
+          frontOrBack: value,
+        },
       };
     },
 
-    selectCategory(state, { payload: category }) {
+    setCategories(state, { payload: { frontEndCategories, backEndCategories } }) {
+      return {
+        ...state,
+        categories: {
+          backEnd: {
+            백엔드: [...backEndCategories],
+          },
+          frontEnd: {
+            프론트엔드: [...frontEndCategories],
+          },
+        },
+      };
+    },
+
+    selectTalentCategory(state, { payload: category }) {
       return {
         ...state,
         selectedTalent: {
@@ -56,7 +78,17 @@ const { actions, reducer } = createSlice({
       };
     },
 
-    selectProficiency(state, { payload: level }) {
+    selectPassionCategory(state, { payload: category }) {
+      return {
+        ...state,
+        selectedTalentToLearn: {
+          ...state.selectedTalentToLearn,
+          selectedCategory: category,
+        },
+      };
+    },
+
+    selectTalentProficiency(state, { payload: level }) {
       return {
         ...state,
         selectedTalent: {
@@ -87,9 +119,11 @@ const { actions, reducer } = createSlice({
 
 export const {
   selectTalent,
+  selectPassion,
   setCategories,
-  selectCategory,
-  selectProficiency,
+  selectTalentCategory,
+  selectPassionCategory,
+  selectTalentProficiency,
   setManttoCategories,
   setUserInfo,
 } = actions;
