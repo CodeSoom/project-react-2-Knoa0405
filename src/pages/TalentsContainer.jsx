@@ -51,19 +51,20 @@ export default function TalentsContainer() {
     <>
       <ManttoTitle>Mantto Talents</ManttoTitle>
       <ManttoCategories>
-        {Object.entries(manttoCategories).map(([key, {
-          nickname, talent, talentToLearn, email, kakaoID,
-        }]) => (
-          <ManttoCategory key={key}>
-            <InfoContainer
-              nickname={nickname}
-              talent={talent}
-              talentToLearn={talentToLearn}
-              email={email}
-              kakaoID={kakaoID}
-            />
-          </ManttoCategory>
-        ))}
+        {Object.entries(manttoCategories).sort(([, value]) => -value.timeStamp)
+          .map(([key, {
+            nickname, talent, talentToLearn, email, kakaoID,
+          }]) => (
+            <ManttoCategory key={key}>
+              <InfoContainer
+                nickname={nickname}
+                talent={talent}
+                talentToLearn={talentToLearn}
+                email={email}
+                kakaoID={kakaoID}
+              />
+            </ManttoCategory>
+          ))}
       </ManttoCategories>
     </>
   );
