@@ -17,7 +17,7 @@ const { actions, reducer } = createSlice({
         프론트엔드: [],
       },
     },
-    manttoCategories: {},
+    manttoCategories: [],
     CategoriesIsLoading: true,
     selectedTalent: {
       frontOrBack: '',
@@ -102,7 +102,7 @@ const { actions, reducer } = createSlice({
     setManttoCategories(state, { payload: manttoCategories }) {
       return {
         ...state,
-        manttoCategories,
+        manttoCategories: Object.entries(manttoCategories).sort(([, value]) => -value.timeStamp),
         CategoriesIsLoading: false,
       };
     },

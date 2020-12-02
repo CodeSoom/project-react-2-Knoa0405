@@ -26,7 +26,7 @@ const ManttoCategory = styled.li({
 export default function TalentsContainer() {
   const dispatch = useDispatch();
 
-  const { CategoriesIsLoading, manttoCategories = [] } = useSelector((state) => ({
+  const { CategoriesIsLoading, manttoCategories } = useSelector((state) => ({
     manttoCategories: state.manttoCategories,
     CategoriesIsLoading: state.CategoriesIsLoading,
   }));
@@ -51,20 +51,19 @@ export default function TalentsContainer() {
     <>
       <ManttoTitle>Mantto Talents</ManttoTitle>
       <ManttoCategories>
-        {Object.entries(manttoCategories).sort(([, value]) => -value.timeStamp)
-          .map(([key, {
-            nickname, talent, talentToLearn, email, kakaoID,
-          }]) => (
-            <ManttoCategory key={key}>
-              <InfoContainer
-                nickname={nickname}
-                talent={talent}
-                talentToLearn={talentToLearn}
-                email={email}
-                kakaoID={kakaoID}
-              />
-            </ManttoCategory>
-          ))}
+        {manttoCategories.map(([key, {
+          nickname, talent, talentToLearn, email, kakaoID,
+        }]) => (
+          <ManttoCategory key={key}>
+            <InfoContainer
+              nickname={nickname}
+              talent={talent}
+              talentToLearn={talentToLearn}
+              email={email}
+              kakaoID={kakaoID}
+            />
+          </ManttoCategory>
+        ))}
       </ManttoCategories>
     </>
   );
