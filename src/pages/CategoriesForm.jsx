@@ -6,11 +6,11 @@ import Item from '../components/styles/Item';
 
 import CategoryButton from '../components/styles/CategoryButton';
 
-function TalentFrontEndForm({ frontEndCategories, onClick }) {
+function CategoriesForm({ categories, onClick }) {
   return (
     <>
       <List>
-        {frontEndCategories.map(({ id, category }) => (
+        {categories.map(({ id, category }) => (
           <Item key={id}>
             <CategoryButton
               type="button"
@@ -26,4 +26,4 @@ function TalentFrontEndForm({ frontEndCategories, onClick }) {
   );
 }
 
-export default TalentFrontEndForm;
+export default CategoriesForm;

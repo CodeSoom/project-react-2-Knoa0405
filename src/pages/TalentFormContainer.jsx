@@ -4,8 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import styled from '@emotion/styled';
 
+import { useParams } from 'react-router-dom';
+
 import {
   selectTalent,
+  selectPassion,
   loadCategories,
 } from '../redux/slice';
 
@@ -21,7 +24,9 @@ const FormLayout = styled.div({
   alignItems: 'center',
 });
 
-function TalentFormContainer() {
+function TalentFormContainer({ params }) {
+  const { talentOrPassion } = params || useParams();
+
   const dispatch = useDispatch();
 
   const { selectedTalent } = useSelector((state) => ({
@@ -36,7 +41,21 @@ function TalentFormContainer() {
 
   function handleClick(e) {
     const { value } = e.target;
+    if (talentOrPassion === 'passion') {
+      dispatch(selectPassion({ value }));
+    }
     dispatch(selectTalent({ value }));
+  }
+  if (talentOrPassion === 'passion') {
+    return (
+      <FormLayout>
+        <Title>내가 가진 열정 고르세요!</Title>
+        <TalentForm onClick={handleClick} />
+        <div>
+          <NextButtonContainer link={`passion/${frontOrBack}`} />
+        </div>
+      </FormLayout>
+    );
   }
 
   return (

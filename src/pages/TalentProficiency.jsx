@@ -26,7 +26,7 @@ const ProficiencyButton = styled.button({
   },
 }));
 
-function TalentProficiency({ selectedCategory, onClick, onSubmit }) {
+function TalentProficiency({ selectedCategory, onClick }) {
   const levels = [
     { level: '상', bgColor: '#f7c42f' },
     { level: '중', bgColor: '#d4d5d9' },
@@ -50,7 +50,7 @@ function TalentProficiency({ selectedCategory, onClick, onSubmit }) {
         ))}
       </List>
       <div>
-        <NextButtonContainer link="talents" onSubmit={onSubmit} />
+        <NextButtonContainer link="passion" />
       </div>
     </>
   );
