@@ -15,7 +15,7 @@ import UserInfoContainer from './UserInfoContainer';
 
 import TalentFormContainer from './TalentFormContainer';
 
-import TalentCategoriesFormContainer from './TalentCategoriesFormContainer';
+import CategoriesFormContainer from './CategoriesFormContainer';
 
 import TalentProficiencyContainer from './TalentProficiencyContainer';
 
@@ -41,7 +41,7 @@ function App() {
         <Route exact path="/userInfo" component={UserInfoContainer} />
         <Route exact path="/talent/proficiency" component={TalentProficiencyContainer} />
         <Route path="/talents" component={TalentsContainer} />
-        <Route exact path="/:talentOrPassion/:categoryUrl" component={TalentCategoriesFormContainer} />
+        <Route exact path="/:talentOrPassion/:categoryUrl" component={CategoriesFormContainer} />
         <Route path="/:talentOrPassion" component={TalentFormContainer} />
       </Switch>
       <Global styles={reset} />
