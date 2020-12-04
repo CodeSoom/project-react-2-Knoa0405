@@ -43,18 +43,4 @@ describe('TalentProficiencyContainer', () => {
 
     expect(dispatch).toBeCalledTimes(1);
   });
-
-  it('calls send category dispatch functions', () => {
-    const { container } = render((
-      <MemoryRouter>
-        <TalentProficiencyContainer />
-      </MemoryRouter>
-    ));
-
-    const button = container.querySelector('a[href="/talents"]');
-
-    fireEvent.click(button);
-
-    expect(dispatch).toBeCalledTimes(1);
-  });
 });

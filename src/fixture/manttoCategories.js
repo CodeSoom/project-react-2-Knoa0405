@@ -1,5 +1,5 @@
 const manttoCategories = [
-  {
+  ['1', {
     id: 1,
     nickname: '만또1',
     talent: {
@@ -13,8 +13,8 @@ const manttoCategories = [
     },
     email: 'test@example.com',
     kakaoID: 'tester1',
-  },
-  {
+  }],
+  ['2', {
     id: 2,
     nickname: '만또2',
     talent: {
@@ -28,8 +28,8 @@ const manttoCategories = [
     },
     email: 'test@example.com',
     kakaoID: 'tester1',
-  },
-  {
+  }],
+  ['3', {
     id: 3,
     nickname: '만또3',
     talent: {
@@ -43,7 +43,7 @@ const manttoCategories = [
     },
     email: 'test@example.com',
     kakaoID: 'tester1',
-  },
+  }],
 ];
 
 export default manttoCategories;
