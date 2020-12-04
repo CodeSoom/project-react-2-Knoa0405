@@ -26,9 +26,6 @@ import LogoContainer from '../components/LogoContainer';
 import Header from './styles/Header';
 
 import PageLayout from './styles/PageLayout';
-//        2. Json Server 에 create Category 가능하도록 구현
-//        4. 프로필 사진 or Avartar 올리기 가능?
-//        5. mantto list 클릭하면 상세 페이지로 이동. ( 이메일 카카오톡 ID 등 표시 )
 
 function App() {
   return (

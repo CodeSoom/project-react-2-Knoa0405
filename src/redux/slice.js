@@ -17,7 +17,8 @@ const { actions, reducer } = createSlice({
         프론트엔드: [],
       },
     },
-    manttoCategories: {},
+    manttoCategories: [],
+    CategoriesIsLoading: true,
     selectedTalent: {
       frontOrBack: '',
       selectedCategory: '',
@@ -101,7 +102,8 @@ const { actions, reducer } = createSlice({
     setManttoCategories(state, { payload: manttoCategories }) {
       return {
         ...state,
-        manttoCategories,
+        manttoCategories: Object.entries(manttoCategories).sort(([, value]) => -value.timeStamp),
+        CategoriesIsLoading: false,
       };
     },
 
@@ -138,7 +140,7 @@ export function loadCategories() {
 
 export function loadManttoCategories() {
   return async (dispatch) => {
-    const { categories: manttoCategories } = await fetchManttoCategories();
+    const { categories: manttoCategories = {} } = await fetchManttoCategories();
 
     dispatch(setManttoCategories(manttoCategories));
   };

@@ -29,8 +29,9 @@ function TalentFormContainer({ params }) {
 
   const dispatch = useDispatch();
 
-  const { selectedTalent } = useSelector((state) => ({
+  const { selectedTalent, selectedTalentToLearn } = useSelector((state) => ({
     selectedTalent: state.selectedTalent,
+    selectedTalentToLearn: state.selectedTalentToLearn,
   }));
 
   const { frontOrBack } = selectedTalent;
@@ -44,15 +45,19 @@ function TalentFormContainer({ params }) {
     if (talentOrPassion === 'passion') {
       dispatch(selectPassion({ value }));
     }
-    dispatch(selectTalent({ value }));
+    if (talentOrPassion === 'talent') {
+      dispatch(selectTalent({ value }));
+    }
   }
+
   if (talentOrPassion === 'passion') {
+    const { frontOrBack: passionFrontOrBack } = selectedTalentToLearn;
     return (
       <FormLayout>
         <Title>내가 가진 열정 고르세요!</Title>
         <TalentForm onClick={handleClick} />
         <div>
-          <NextButtonContainer link={`passion/${frontOrBack}`} />
+          <NextButtonContainer link={`passion/${passionFrontOrBack}`} />
         </div>
       </FormLayout>
     );
