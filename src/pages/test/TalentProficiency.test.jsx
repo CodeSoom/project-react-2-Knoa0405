@@ -33,23 +33,4 @@ describe('TalentProficiency', () => {
       });
     });
   });
-
-  context('when click "다음" button', () => {
-    it('calls handleSubmit function', () => {
-      const { container } = render((
-        <MemoryRouter>
-          <TalentProficiency
-            onClick={handleClick}
-            onSubmit={handleSubmit}
-          />
-        </MemoryRouter>
-      ));
-
-      const button = container.querySelector('a[href="/talents"]');
-
-      fireEvent.click(button);
-
-      expect(handleSubmit).toBeCalled();
-    });
-  });
 });

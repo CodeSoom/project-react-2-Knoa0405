@@ -38,7 +38,7 @@ function App() {
         <Route exact path="/userInfo" component={UserInfoContainer} />
         <Route exact path="/talent/proficiency" component={TalentProficiencyContainer} />
         <Route path="/talents" component={TalentsContainer} />
-        <Route exact path="/:talentOrPassion/:categoryUrl" component={CategoriesFormContainer} />
+        <Route exact path="/:talentOrPassion/:category" component={CategoriesFormContainer} />
         <Route path="/:talentOrPassion" component={TalentFormContainer} />
       </Switch>
       <Global styles={reset} />

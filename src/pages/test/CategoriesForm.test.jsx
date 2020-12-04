@@ -2,41 +2,63 @@ import React from 'react';
 
 import { fireEvent, render } from '@testing-library/react';
 
+import { MemoryRouter } from 'react-router-dom';
+
 import CategoriesForm from '../CategoriesForm';
 
 describe('CategoriesForm', () => {
-  const frontEndCategories = [
+  const handleClick = jest.fn();
+  const handleSubmit = jest.fn();
+
+  const categories = [
     { id: 1, category: 'ReactJs' },
     { id: 2, category: 'VueJs' },
   ];
-  it('renders backEnd categories', () => {
-    const { getByText } = render((
+
+  const renderCategoriesForm = ({ talentOrPassion = 'talent' }) => render((
+    <MemoryRouter>
       <CategoriesForm
-        frontEndCategories={frontEndCategories}
+        categories={categories}
+        talentOrPassion={talentOrPassion}
+        onClick={handleClick}
+        onSubmit={handleSubmit}
       />
-    ));
+    </MemoryRouter>
+  ));
 
-    frontEndCategories.forEach(({ category }) => {
-      const regex = new RegExp(`${category}`);
+  describe('talentOrPassion parameter is a talent', () => {
+    it('renders categories', () => {
+      const { getByText } = renderCategoriesForm({ talentOrPassion: 'talent' });
 
-      expect(getByText(regex)).not.toBeNull();
+      categories.forEach(({ category }) => {
+        const regex = new RegExp(`${category}`);
+
+        expect(getByText(regex)).not.toBeNull();
+      });
+    });
+
+    context('When click a category', () => {
+      it('calls handleClick function', () => {
+        const { getByText } = renderCategoriesForm({ talentOrPassion: 'talent' });
+
+        fireEvent.click(getByText(/ReactJs/));
+
+        expect(handleClick).toBeCalled();
+      });
     });
   });
 
-  context('when click category', () => {
-    const handleClick = jest.fn();
+  describe('talentOrPassion parameter is a passion', () => {
+    context('when click "arrowRight" button ', () => {
+      it('calls handleSubmit function', () => {
+        const { container } = renderCategoriesForm({ talentOrPassion: 'passion' });
 
-    it('calls handleClick function', () => {
-      const { getByText } = render((
-        <CategoriesForm
-          frontEndCategories={frontEndCategories}
-          onClick={handleClick}
-        />
-      ));
+        const button = container.querySelector('a[href="/talents"]');
 
-      fireEvent.click(getByText(/ReactJs/));
+        fireEvent.click(button);
 
-      expect(handleClick).toBeCalled();
+        expect(handleSubmit).toBeCalled();
+      });
     });
   });
 });

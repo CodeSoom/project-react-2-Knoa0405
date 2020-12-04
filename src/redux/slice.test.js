@@ -12,6 +12,8 @@ import reducer, {
   setUserInfo,
   loadManttoCategories,
   sendCategory,
+  selectPassionCategory,
+  selectPassion,
 } from './slice';
 
 import manttoCategories from '../fixture/manttoCategories';
@@ -21,9 +23,16 @@ import { postCategory } from '../services/api';
 describe('reducer', () => {
   context('when state is undefined', () => {
     const initialState = {
-      backEndCategories: [],
-      frontEndCategories: [],
-      manttoCategories: {},
+      categories: {
+        backEnd: {
+          백엔드: [],
+        },
+        frontEnd: {
+          프론트엔드: [],
+        },
+      },
+      manttoCategories: [],
+      CategoriesIsLoading: true,
       selectedTalent: {
         frontOrBack: '',
         selectedCategory: '',
@@ -63,11 +72,33 @@ describe('reducer', () => {
     });
   });
 
+  describe('selectPassion', () => {
+    it('changes selected passion', () => {
+      const initialState = {
+        selectedTalentToLearn: {
+          frontOrBack: '',
+        },
+      };
+
+      const value = 'FrontEnd';
+
+      const state = reducer(initialState, selectPassion({ value }));
+
+      expect(state.selectedTalentToLearn.frontOrBack).toEqual('FrontEnd');
+    });
+  });
+
   describe('setCategories', () => {
     it('changes categories', () => {
       const initialState = {
-        backEndCategories: [],
-        frontEndCategories: [],
+        categories: {
+          backEnd: {
+            백엔드: [],
+          },
+          frontEnd: {
+            프론트엔드: [],
+          },
+        },
       };
 
       const backEndCategories = [
@@ -82,13 +113,13 @@ describe('reducer', () => {
         initialState, setCategories({ backEndCategories, frontEndCategories }),
       );
 
-      expect(state.backEndCategories).toHaveLength(1);
-      expect(state.frontEndCategories).toHaveLength(1);
+      expect(state.categories.backEnd['백엔드']).toHaveLength(1);
+      expect(state.categories.frontEnd['프론트엔드']).toHaveLength(1);
     });
   });
 
   describe('selectTalentCategory', () => {
-    it('changes select category', () => {
+    it('changes select talent category', () => {
       const initialState = {
         selectedTalent: {
           frontOrBack: '',
@@ -102,6 +133,23 @@ describe('reducer', () => {
       const state = reducer(initialState, selectTalentCategory(category));
 
       expect(state.selectedTalent.selectedCategory).toEqual('ReactJs');
+    });
+  });
+
+  describe('selectPassionCategory', () => {
+    it('changes select passion category', () => {
+      const initialState = {
+        selectedTalentToLearn: {
+          frontOrBack: '',
+          selectedCategory: '',
+        },
+      };
+
+      const category = 'ReactJs';
+
+      const state = reducer(initialState, selectPassionCategory(category));
+
+      expect(state.selectedTalentToLearn.selectedCategory).toEqual('ReactJs');
     });
   });
 
@@ -133,24 +181,25 @@ describe('reducer', () => {
 
       expect(state.manttoCategories).toHaveLength(3);
     });
-    describe('setUserInfo', () => {
-      it('changes user informations', () => {
-        const initialState = {
-          userInfo: {
-            nickname: '',
-            email: '',
-            kakaoID: '',
-          },
-        };
+  });
 
-        const state = reducer(initialState, setUserInfo({
-          name: 'nickname', value: '테스터',
-        }));
+  describe('setUserInfo', () => {
+    it('changes user informations', () => {
+      const initialState = {
+        userInfo: {
+          nickname: '',
+          email: '',
+          kakaoID: '',
+        },
+      };
 
-        expect(state.userInfo.nickname).toEqual('테스터');
+      const state = reducer(initialState, setUserInfo({
+        name: 'nickname', value: '테스터',
+      }));
 
-        expect(state.userInfo.email).toEqual('');
-      });
+      expect(state.userInfo.nickname).toEqual('테스터');
+
+      expect(state.userInfo.email).toEqual('');
     });
   });
 });
@@ -192,6 +241,7 @@ describe('actions', () => {
 
       expect(actions[0]).toEqual({
         type: 'application/setManttoCategories',
+        payload: {},
       });
     });
   });
@@ -199,7 +249,7 @@ describe('actions', () => {
   describe('sendCategory', () => {
     beforeEach(() => {
       store = mockStore({
-        manttoCategories: [],
+        manttoCategories: {},
       });
     });
 
@@ -212,6 +262,7 @@ describe('actions', () => {
 
       expect(actions[0]).toEqual({
         type: 'application/setManttoCategories',
+        payload: {},
       });
     });
   });

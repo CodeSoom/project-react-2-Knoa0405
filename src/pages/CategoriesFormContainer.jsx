@@ -1,10 +1,6 @@
 import React from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
-
-import { useParams } from 'react-router-dom';
-
-import NextButtonContainer from '../components/NextButtonContainer';
+import { useDispatch } from 'react-redux';
 
 import {
   selectPassionCategory,
@@ -14,23 +10,15 @@ import {
 
 import CategoriesForm from './CategoriesForm';
 
-import Title from '../components/styles/Title';
-
-function CategoriesFormContainer({ params }) {
-  const { talentOrPassion, categoryUrl } = params || useParams();
-
+function CategoriesFormContainer({ talentOrPassion, categoriesValues }) {
   const dispatch = useDispatch();
 
-  const { categories } = useSelector((state) => ({
-    categories: state.categories,
-  }));
-
-  function handleClick({ category }) {
+  function handleClick({ item }) {
     if (talentOrPassion === 'passion') {
-      dispatch(selectPassionCategory(category));
+      dispatch(selectPassionCategory(item));
     }
     if (talentOrPassion === 'talent') {
-      dispatch(selectTalentCategory(category));
+      dispatch(selectTalentCategory(item));
     }
   }
 
@@ -40,20 +28,12 @@ function CategoriesFormContainer({ params }) {
 
   return (
     <>
-      <Title>
-        {`${Object.keys(categories[categoryUrl])[0]}`}
-        {' '}
-        항목을 고르세요
-      </Title>
       <CategoriesForm
-        categories={Object.values(categories[categoryUrl])[0]}
+        categories={categoriesValues}
+        talentOrPassion={talentOrPassion}
         onClick={handleClick}
+        onSubmit={handleSubmit}
       />
-      <div>
-        {talentOrPassion === 'talent'
-          ? <NextButtonContainer link="talent/proficiency" />
-          : <NextButtonContainer link="talents" onSubmit={handleSubmit} />}
-      </div>
     </>
   );
 }

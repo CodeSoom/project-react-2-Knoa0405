@@ -2,7 +2,7 @@ import React from 'react';
 
 import { fireEvent, render } from '@testing-library/react';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { MemoryRouter } from 'react-router-dom';
 
@@ -13,47 +13,99 @@ jest.mock('react-redux');
 describe('CategoriesFormContainer', () => {
   const dispatch = jest.fn();
 
-  beforeEach(() => {
-    useSelector.mockImplementation((selector) => selector({
-      frontEndCategories: [
-        { id: 1, category: 'ReactJs' },
-        { id: 2, category: 'VueJs' },
-      ],
-    }));
+  const categoriesValues = [
+    { id: 1, category: 'ReactJs' },
+    { id: 2, category: 'VueJs' },
+  ];
 
+  const renderCategoriesFormContainer = ({ talentOrPassion }) => render((
+    <MemoryRouter>
+      <CategoriesFormContainer
+        talentOrPassion={talentOrPassion}
+        categoriesValues={categoriesValues}
+      />
+    </MemoryRouter>
+  ));
+
+  beforeEach(() => {
     useDispatch.mockImplementation(() => dispatch);
   });
 
-  it('renders frontEnd categories', () => {
-    const { getByText } = render((
-      <MemoryRouter>
-        <CategoriesFormContainer />
-      </MemoryRouter>
-    ));
+  context('with talentOrPassion parameter is a talent', () => {
+    const talentOrPassion = 'talent';
 
-    const frontEndCategories = [
-      { id: 1, category: 'ReactJs' },
-      { id: 2, category: 'VueJs' },
-    ];
+    it('renders categories', () => {
+      const { getByText } = renderCategoriesFormContainer({
+        talentOrPassion,
+      });
 
-    frontEndCategories.forEach(({ category }) => {
-      const regex = new RegExp(`${category}`);
+      categoriesValues.forEach(({ category }) => {
+        const regex = new RegExp(`${category}`);
 
-      expect(getByText(regex)).not.toBeNull();
+        expect(getByText(regex)).not.toBeNull();
+      });
+    });
+
+    context('when click category', () => {
+      it('calls select talent category dispatch function', () => {
+        const { getByText } = renderCategoriesFormContainer({
+          talentOrPassion,
+        });
+
+        categoriesValues.forEach(({ category }) => {
+          const regex = new RegExp(`${category}`);
+
+          fireEvent.click(getByText(regex));
+
+          expect(dispatch).toBeCalled();
+        });
+      });
     });
   });
 
-  context('when click category', () => {
-    it('calls select category dispatch function', () => {
-      const { getByText } = render((
-        <MemoryRouter>
-          <CategoriesFormContainer />
-        </MemoryRouter>
-      ));
+  context('with talentOrPassion parameter is a passion', () => {
+    const talentOrPassion = 'passion';
 
-      fireEvent.click(getByText(/ReactJs/));
+    it('renders categories', () => {
+      const { getByText } = renderCategoriesFormContainer({
+        talentOrPassion,
+      });
 
-      expect(dispatch).toBeCalled();
+      categoriesValues.forEach(({ category }) => {
+        const regex = new RegExp(`${category}`);
+
+        expect(getByText(regex)).not.toBeNull();
+      });
+    });
+
+    context('when click "arrowLeft" button', () => {
+      it('calls send category dispatch function', () => {
+        const { container } = renderCategoriesFormContainer({
+          talentOrPassion,
+        });
+
+        const button = container.querySelector('a[href="/talents"]');
+
+        fireEvent.click(button);
+
+        expect(dispatch).toBeCalled();
+      });
+    });
+
+    context('when click category', () => {
+      it('calls select passion category dispatch function', () => {
+        const { getByText } = renderCategoriesFormContainer({
+          talentOrPassion,
+        });
+
+        categoriesValues.forEach(({ category }) => {
+          const regex = new RegExp(`${category}`);
+
+          fireEvent.click(getByText(regex));
+
+          expect(dispatch).toBeCalled();
+        });
+      });
     });
   });
 });

@@ -14,8 +14,11 @@ describe('TalentFormContainer', () => {
   const dispatch = jest.fn();
 
   beforeEach(() => {
+    jest.clearAllMocks();
+
     useSelector.mockImplementation((selector) => selector({
       selectedTalent: {},
+      selectedTalentToLearn: {},
     }));
 
     useDispatch.mockImplementation(() => dispatch);
@@ -32,14 +35,29 @@ describe('TalentFormContainer', () => {
     expect(getByText('프론트엔드')).not.toBeNull();
   });
 
-  it('calls select talent dispatch function', () => {
-    const { getByText } = render((
-      <MemoryRouter>
-        <TalentFormContainer />
-      </MemoryRouter>
-    ));
-    fireEvent.click(getByText('백엔드'));
+  context('when parameter is talent ', () => {
+    it('calls select talent dispatch function', () => {
+      const { getByText } = render((
+        <MemoryRouter>
+          <TalentFormContainer params={{ talentOrPassion: 'talent' }} />
+        </MemoryRouter>
+      ));
+      fireEvent.click(getByText('백엔드'));
 
-    expect(dispatch).toBeCalledTimes(3);
+      expect(dispatch).toBeCalledTimes(2);
+    });
+  });
+
+  context('when parameter is passion ', () => {
+    it('calls select passion dispatch function', () => {
+      const { getByText } = render((
+        <MemoryRouter>
+          <TalentFormContainer params={{ talentOrPassion: 'passion' }} />
+        </MemoryRouter>
+      ));
+      fireEvent.click(getByText('백엔드'));
+
+      expect(dispatch).toBeCalledTimes(2);
+    });
   });
 });

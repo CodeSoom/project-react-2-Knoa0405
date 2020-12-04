@@ -69,22 +69,22 @@ const { actions, reducer } = createSlice({
       };
     },
 
-    selectTalentCategory(state, { payload: category }) {
+    selectTalentCategory(state, { payload: item }) {
       return {
         ...state,
         selectedTalent: {
           ...state.selectedTalent,
-          selectedCategory: category,
+          selectedCategory: item,
         },
       };
     },
 
-    selectPassionCategory(state, { payload: category }) {
+    selectPassionCategory(state, { payload: item }) {
       return {
         ...state,
         selectedTalentToLearn: {
           ...state.selectedTalentToLearn,
-          selectedCategory: category,
+          selectedCategory: item,
         },
       };
     },
