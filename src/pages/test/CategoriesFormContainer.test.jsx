@@ -22,7 +22,7 @@ describe('CategoriesFormContainer', () => {
     <MemoryRouter>
       <CategoriesFormContainer
         talentOrPassion={talentOrPassion}
-        categoriesValues={categoriesValues}
+        categories={categoriesValues}
       />
     </MemoryRouter>
   ));

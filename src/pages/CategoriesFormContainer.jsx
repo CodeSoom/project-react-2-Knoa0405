@@ -10,7 +10,7 @@ import {
 
 import CategoriesForm from './CategoriesForm';
 
-function CategoriesFormContainer({ talentOrPassion, categoriesValues }) {
+function CategoriesFormContainer({ talentOrPassion, categories }) {
   const dispatch = useDispatch();
 
   function handleClick({ item }) {
@@ -29,7 +29,7 @@ function CategoriesFormContainer({ talentOrPassion, categoriesValues }) {
   return (
     <>
       <CategoriesForm
-        categories={categoriesValues}
+        categories={categories}
         talentOrPassion={talentOrPassion}
         onClick={handleClick}
         onSubmit={handleSubmit}
