@@ -4,6 +4,7 @@ import {
   fetchCategories,
   fetchManttoCategories,
   postCategory,
+  postLogin,
 } from '../services/api';
 
 const { actions, reducer } = createSlice({
@@ -32,6 +33,10 @@ const { actions, reducer } = createSlice({
       nickname: '',
       email: '',
       kakaoID: '',
+    },
+    loginFields: {
+      username: '',
+      password: '',
     },
   },
   reducers: {
@@ -116,6 +121,26 @@ const { actions, reducer } = createSlice({
         },
       };
     },
+
+    setLoginFields(state, { payload: { name, value } }) {
+      return {
+        ...state,
+        loginFields: {
+          ...state.loginFields,
+          [name]: value,
+        },
+      };
+    },
+
+    clearLoginFields(state) {
+      return {
+        ...state,
+        loginFields: {
+          username: '',
+          password: '',
+        },
+      };
+    },
   },
 });
 
@@ -128,6 +153,8 @@ export const {
   selectTalentProficiency,
   setManttoCategories,
   setUserInfo,
+  setLoginFields,
+  clearLoginFields,
 } = actions;
 
 export function loadCategories() {
@@ -155,6 +182,16 @@ export function sendCategory() {
     });
 
     dispatch(loadManttoCategories());
+  };
+}
+
+export function requestLogin() {
+  return async (dispatch, getState) => {
+    const { loginFields: { username, password } } = getState();
+
+    await postLogin({ username, password });
+
+    dispatch(clearLoginFields());
   };
 }
 

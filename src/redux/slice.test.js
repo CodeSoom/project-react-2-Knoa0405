@@ -10,10 +10,12 @@ import reducer, {
   selectTalentProficiency,
   setManttoCategories,
   setUserInfo,
+  setLoginFields,
   loadManttoCategories,
   sendCategory,
   selectPassionCategory,
   selectPassion,
+  requestLogin,
 } from './slice';
 
 import manttoCategories from '../fixture/manttoCategories';
@@ -46,6 +48,10 @@ describe('reducer', () => {
         nickname: '',
         email: '',
         kakaoID: '',
+      },
+      loginFields: {
+        username: '',
+        password: '',
       },
     };
 
@@ -202,6 +208,24 @@ describe('reducer', () => {
       expect(state.userInfo.email).toEqual('');
     });
   });
+
+  describe('setLoginFields', () => {
+    it('changes login fields', () => {
+      const initialState = {
+        loginFields: {
+          username: '',
+          password: '',
+        },
+      };
+
+      const state = reducer(initialState, setLoginFields({
+        name: 'username', value: 'tester',
+      }));
+
+      expect(state.loginFields.username).toEqual('tester');
+      expect(state.loginFields.password).toEqual('');
+    });
+  });
 });
 
 const middlewares = [thunk];
@@ -263,6 +287,24 @@ describe('actions', () => {
       expect(actions[0]).toEqual({
         type: 'application/setManttoCategories',
         payload: {},
+      });
+    });
+  });
+
+  describe('requestLogin', () => {
+    beforeEach(() => {
+      store = mockStore({
+        loginFields: { username: '', password: '' },
+      });
+    });
+
+    it('runs requestLogin', async () => {
+      await store.dispatch(requestLogin());
+
+      const actions = store.getActions();
+
+      expect(actions[0]).toEqual({
+        type: 'application/clearLoginFields',
       });
     });
   });

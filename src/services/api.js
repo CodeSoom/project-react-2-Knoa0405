@@ -1,5 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 
+import firebase from './firebase';
+
 export async function fetchCategories() {
   const frontResponse = await fetch(process.env.frontUrl);
   const backResponse = await fetch(process.env.backUrl);
@@ -42,4 +44,18 @@ export async function postCategory({
   });
 
   await response.json();
+}
+
+export async function postLogin({
+  username, password,
+}) {
+  try {
+    console.log(firebase.auth().createUserWithEmailAndPassword(username, password));
+    const user = firebase.auth().signInWithEmailAndPassword(username, password);
+
+    console.log(newUser);
+    console.log(user);
+  } catch (e) {
+    const errorCode = e.code;
+  }
 }
