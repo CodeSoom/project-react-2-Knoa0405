@@ -16,6 +16,10 @@ describe('App', () => {
   beforeEach(() => {
     useSelector.mockImplementation((selector) => selector({
       selectedTalent: {},
+      loginFields: {
+        username: '',
+        password: '',
+      },
     }));
 
     useDispatch.mockImplementation(() => dispatch);

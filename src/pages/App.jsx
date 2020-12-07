@@ -9,6 +9,8 @@ import { Global } from '@emotion/core';
 
 import reset from './styles/Reset';
 
+import LoginPage from './LoginPage';
+
 import MainPage from './MainPage';
 
 import UserInfoContainer from './UserInfoContainer';
@@ -34,7 +36,8 @@ function App() {
         <LogoContainer />
       </Header>
       <Switch>
-        <Route exact path="/" component={MainPage} />
+        <Route path="/" component={LoginPage} />
+        <Route exact path="/main" component={MainPage} />
         <Route exact path="/userInfo" component={UserInfoContainer} />
         <Route exact path="/talent/proficiency" component={TalentProficiencyContainer} />
         <Route path="/talents" component={TalentsContainer} />
