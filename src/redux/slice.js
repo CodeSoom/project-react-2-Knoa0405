@@ -4,8 +4,11 @@ import {
   fetchCategories,
   fetchManttoCategories,
   postCategory,
-  postLogin,
+  postSignIn,
+  postSignUp,
 } from '../services/api';
+
+import { auth } from '../services/firebase';
 
 const { actions, reducer } = createSlice({
   name: 'application',
@@ -37,6 +40,11 @@ const { actions, reducer } = createSlice({
     loginFields: {
       username: '',
       password: '',
+    },
+    user: '',
+    loginError: {
+      code: '',
+      message: '',
     },
   },
   reducers: {
@@ -141,6 +149,24 @@ const { actions, reducer } = createSlice({
         },
       };
     },
+
+    setError(state, { payload: { errorCode, errorMessage } }) {
+      return {
+        ...state,
+        loginError: {
+          ...state.loginError,
+          code: errorCode,
+          message: errorMessage,
+        },
+      };
+    },
+
+    setUser(state, { payload: user }) {
+      return {
+        ...state,
+        user,
+      };
+    },
   },
 });
 
@@ -155,6 +181,8 @@ export const {
   setUserInfo,
   setLoginFields,
   clearLoginFields,
+  setError,
+  setUser,
 } = actions;
 
 export function loadCategories() {
@@ -185,11 +213,27 @@ export function sendCategory() {
   };
 }
 
-export function requestLogin() {
+export function requestSignUp() {
   return async (dispatch, getState) => {
     const { loginFields: { username, password } } = getState();
 
-    await postLogin({ username, password });
+    const { errorCode = '', errorMessage = '' } = await postSignUp({ username, password });
+
+    dispatch(setError({ errorCode, errorMessage }));
+
+    dispatch(clearLoginFields());
+  };
+}
+
+export function requestSignIn() {
+  return async (dispatch, getState) => {
+    const { loginFields: { username, password } } = getState();
+
+    const { errorCode = '', errorMessage = '' } = await postSignIn({ username, password });
+
+    const user = auth.currentUser;
+
+    dispatch(setError({ errorCode, errorMessage }));
 
     dispatch(clearLoginFields());
   };

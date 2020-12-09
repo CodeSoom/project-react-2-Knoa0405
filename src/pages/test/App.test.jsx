@@ -20,6 +20,10 @@ describe('App', () => {
         username: '',
         password: '',
       },
+      loginError: {
+        code: '',
+        message: '',
+      },
     }));
 
     useDispatch.mockImplementation(() => dispatch);

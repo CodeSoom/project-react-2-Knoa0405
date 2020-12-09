@@ -2,7 +2,7 @@ import React from 'react';
 
 import { render } from '@testing-library/react';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import LoginPage from '../LoginPage';
 
@@ -14,6 +14,7 @@ describe('LoginPage', () => {
 
     useSelector.mockImplementation((selector) => selector({
       loginFields: { username: '', password: '' },
+      loginError: { code: '', message: '' },
     }));
   });
   it('renders "로그인" text', () => {

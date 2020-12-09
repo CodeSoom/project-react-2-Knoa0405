@@ -6,13 +6,17 @@ import LoginForm from '../LoginForm';
 
 describe('LoginForm', () => {
   const handleChange = jest.fn();
-  const handleSubmit = jest.fn();
+  const handleSignUp = jest.fn();
+  const handleSignIn = jest.fn();
 
   const renderLoginForm = ({ username, password } = {}) => render((
     <LoginForm
       fields={{ username, password }}
       onChange={handleChange}
-      onSubmit={handleSubmit}
+      handleSignUp={handleSignUp}
+      handleSignIn={handleSignIn}
+      error={{ code: '', message: '' }}
+      user=""
     />));
 
   context('when user inputs text', () => {
@@ -46,7 +50,7 @@ describe('LoginForm', () => {
 
       fireEvent.click(getByText('Sign In'));
 
-      expect(handleSubmit).toBeCalled();
+      expect(handleSignIn).toBeCalled();
     });
 
     it('clear all input value', () => {
