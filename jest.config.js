@@ -1,4 +1,7 @@
 module.exports = {
+  setupFiles: [
+    'dotenv/config',
+  ],
   setupFilesAfterEnv: [
     'given2/setup',
     'jest-plugin-context/setup',

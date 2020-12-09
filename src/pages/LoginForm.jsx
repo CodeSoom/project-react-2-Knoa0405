@@ -1,35 +1,66 @@
 import React from 'react';
 
 function LoginForm({
-  fields, onChange, onSubmit,
+  fields, onChange, handleSignIn, handleSignUp, error, user,
 }) {
+  const handleLogOut = () => {
+    //
+  };
+
   const { username, password } = fields;
+  const { code = '아직없음', message = '아직없음' } = error;
+
+  if (user) {
+    return (
+      <>
+        <p>로그인 성공</p>
+        <button type="button" onClick={() => handleLogOut}>로그아웃</button>
+      </>
+    );
+  }
 
   return (
-    <form action="" method="POST">
-      <label htmlFor="login-id">ID</label>
-      <input
-        id="login-id"
-        type="text"
-        name="username"
-        value={username}
-        onChange={onChange}
-      />
-      <label htmlFor="login-pwd">PASSWORD</label>
-      <input
-        id="login-pwd"
-        type="password"
-        name="password"
-        value={password}
-        onChange={onChange}
-      />
-      <button
-        type="button"
-        onClick={onSubmit}
-      >
-        Sign In
-      </button>
-    </form>
+    <>
+      <form action="" method="POST">
+        <label htmlFor="login-id">ID</label>
+        <input
+          id="login-id"
+          type="email"
+          name="username"
+          value={username}
+          onChange={onChange}
+        />
+        <label htmlFor="login-pwd">PASSWORD</label>
+        <input
+          id="login-pwd"
+          type="password"
+          name="password"
+          value={password}
+          onChange={onChange}
+        />
+        <button
+          type="button"
+          onClick={handleSignIn}
+        >
+          Sign In
+        </button>
+        <button
+          type="button"
+          onClick={handleSignUp}
+        >
+          Sign Up
+        </button>
+      </form>
+
+      {code !== '' || message !== ''
+        ? (
+          <>
+            <p>{`에러코드 : ${code}`}</p>
+            <p>{`에러 메세지 : ${message}`}</p>
+          </>
+        )
+        : ''}
+    </>
   );
 }
 

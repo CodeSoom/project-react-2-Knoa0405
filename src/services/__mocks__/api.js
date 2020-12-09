@@ -7,5 +7,9 @@ export function fetchManttoCategories() {
 }
 
 export function postCategory() {
-//
+  return {};
+}
+
+export function postSignUp() {
+  return { errorCode: '', errorMessage: '' };
 }

@@ -15,12 +15,13 @@ import reducer, {
   sendCategory,
   selectPassionCategory,
   selectPassion,
-  requestLogin,
+  requestSignUp,
+  setError,
 } from './slice';
 
 import manttoCategories from '../fixture/manttoCategories';
 
-import { postCategory } from '../services/api';
+import { postCategory, postSignUp } from '../services/api';
 
 describe('reducer', () => {
   context('when state is undefined', () => {
@@ -52,6 +53,11 @@ describe('reducer', () => {
       loginFields: {
         username: '',
         password: '',
+      },
+      user: '',
+      loginError: {
+        code: '',
+        message: '',
       },
     };
 
@@ -226,6 +232,23 @@ describe('reducer', () => {
       expect(state.loginFields.password).toEqual('');
     });
   });
+
+  describe('setError', () => {
+    it('changes mantto categories', () => {
+      const initialState = {
+        loginError: {
+          code: '',
+          message: '',
+        },
+      };
+
+      const errorMessage = 'invalid ID';
+
+      const state = reducer(initialState, setError({ errorCode: '', errorMessage }));
+
+      expect(state.loginError.message).toEqual(errorMessage);
+    });
+  });
 });
 
 const middlewares = [thunk];
@@ -291,20 +314,26 @@ describe('actions', () => {
     });
   });
 
-  describe('requestLogin', () => {
+  describe('requestSignUp', () => {
     beforeEach(() => {
       store = mockStore({
         loginFields: { username: '', password: '' },
       });
     });
 
-    it('runs requestLogin', async () => {
-      await store.dispatch(requestLogin());
+    it('runs requestSignUp', async () => {
+      await store.dispatch(requestSignUp());
+
+      await postSignUp({});
 
       const actions = store.getActions();
 
       expect(actions[0]).toEqual({
-        type: 'application/clearLoginFields',
+        type: 'application/setError',
+        payload: {
+          errorCode: '',
+          errorMessage: '',
+        },
       });
     });
   });
