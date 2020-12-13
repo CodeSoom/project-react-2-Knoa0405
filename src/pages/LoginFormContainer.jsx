@@ -2,13 +2,18 @@ import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
+import { Link } from 'react-router-dom';
+
 import LoginForm from './LoginForm';
 
 import {
   setLoginFields,
   requestSignUp,
   requestSignIn,
+  setUser,
 } from '../redux/slice';
+
+import { auth } from '../services/firebase';
 
 function LoginFormContainer() {
   const dispatch = useDispatch();
@@ -33,9 +38,17 @@ function LoginFormContainer() {
     dispatch(requestSignUp());
   }
 
+  function handleLogOut() {
+    dispatch(setUser(''));
+    auth.signOut();
+  }
+
   if (user) {
     return (
-      <p>LogOut</p>
+      <>
+        <button type="button" onClick={handleLogOut}>LogOut</button>
+        <Link to="/main">메인으로</Link>
+      </>
     );
   }
 

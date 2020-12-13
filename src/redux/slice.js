@@ -217,7 +217,7 @@ export function requestSignUp() {
   return async (dispatch, getState) => {
     const { loginFields: { username, password } } = getState();
 
-    const { errorCode = '', errorMessage = '' } = await postSignUp({ username, password });
+    const { errorCode, errorMessage } = await postSignUp({ username, password });
 
     dispatch(setError({ errorCode, errorMessage }));
 
@@ -229,9 +229,7 @@ export function requestSignIn() {
   return async (dispatch, getState) => {
     const { loginFields: { username, password } } = getState();
 
-    const { errorCode = '', errorMessage = '' } = await postSignIn({ username, password });
-
-    const user = auth.currentUser;
+    const { errorCode, errorMessage } = await postSignIn({ username, password });
 
     dispatch(setError({ errorCode, errorMessage }));
 

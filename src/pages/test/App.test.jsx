@@ -24,6 +24,7 @@ describe('App', () => {
         code: '',
         message: '',
       },
+      user: '',
     }));
 
     useDispatch.mockImplementation(() => dispatch);
