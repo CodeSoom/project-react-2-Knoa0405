@@ -1,24 +1,11 @@
 import React from 'react';
 
 function LoginForm({
-  fields, onChange, handleSignIn, handleSignUp, error, user,
+  fields, onChange, handleSignIn, handleSignUp, error,
 }) {
-  const handleLogOut = () => {
-    //
-  };
-
   const { username, password } = fields;
 
   const { code = '아직없음', message = '아직없음' } = error;
-
-  if (user) {
-    return (
-      <>
-        <p>로그인 성공</p>
-        <button type="button" onClick={() => handleLogOut}>로그아웃</button>
-      </>
-    );
-  }
 
   return (
     <>

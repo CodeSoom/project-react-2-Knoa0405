@@ -9,6 +9,7 @@ import {
 } from '../services/api';
 
 import { auth } from '../services/firebase';
+import { saveItem } from '../services/storage';
 
 const { actions, reducer } = createSlice({
   name: 'application',
@@ -41,7 +42,10 @@ const { actions, reducer } = createSlice({
       username: '',
       password: '',
     },
-    user: '',
+    user: {
+      uid: undefined,
+      isLoading: false,
+    },
     loginError: {
       code: '',
       message: '',
@@ -161,10 +165,14 @@ const { actions, reducer } = createSlice({
       };
     },
 
-    setUser(state, { payload: user }) {
+    setUser(state, { payload: { uid, isLoading } }) {
       return {
         ...state,
-        user,
+        user: {
+          ...state.user,
+          uid,
+          isLoading,
+        },
       };
     },
   },

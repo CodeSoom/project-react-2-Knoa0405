@@ -15,14 +15,17 @@ import {
 
 import { auth } from '../services/firebase';
 
+import { loadItem, clearItem } from '../services/storage';
+
 function LoginFormContainer() {
   const dispatch = useDispatch();
 
-  const { loginFields, loginError, user } = useSelector((state) => ({
+  const { loginFields, loginError } = useSelector((state) => ({
     loginFields: state.loginFields,
     loginError: state.loginError,
-    user: state.user,
   }));
+
+  const user = loadItem('user');
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -39,8 +42,11 @@ function LoginFormContainer() {
   }
 
   function handleLogOut() {
-    dispatch(setUser(''));
     auth.signOut();
+
+    dispatch(setUser({ uid: '' }));
+
+    clearItem('user');
   }
 
   if (user) {

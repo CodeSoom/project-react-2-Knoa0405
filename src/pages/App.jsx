@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import {
   Switch,
@@ -7,7 +7,7 @@ import {
 
 import { Global } from '@emotion/core';
 
-import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import reset from './styles/Reset';
 
@@ -33,10 +33,18 @@ import PageLayout from './styles/PageLayout';
 
 import AuthRoute from '../components/AuthRoute';
 
+import { loadItem } from '../services/storage';
+
+import { setUser } from '../redux/slice';
+
 function App() {
-  const { user } = useSelector((state) => ({
-    user: state.user,
-  }));
+  const dispatch = useDispatch();
+
+  const user = loadItem('user');
+
+  if (user) {
+    dispatch(setUser({ uid: user }));
+  }
 
   return (
     <PageLayout>
@@ -44,7 +52,7 @@ function App() {
         <LogoContainer />
       </Header>
       <Switch>
-        <Route user={user} exact path="/" component={LoginPage} />
+        <Route exact path="/" component={LoginPage} />
         <AuthRoute user={user} path="/main" component={MainPage} />
         <AuthRoute user={user} path="/userInfo" component={UserInfoContainer} />
         <AuthRoute user={user} path="/talent/proficiency" component={TalentProficiencyContainer} />

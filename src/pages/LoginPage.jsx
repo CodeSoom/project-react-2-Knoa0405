@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
 
-import { Redirect } from 'react-router-dom';
-
 import { useDispatch } from 'react-redux';
 
 import LoginFormContainer from './LoginFormContainer';
@@ -10,16 +8,18 @@ import { auth } from '../services/firebase';
 
 import { setUser } from '../redux/slice';
 
-function LoginPage({ user, location }) {
-  const dispatch = useDispatch();
+import { saveItem } from '../services/storage';
 
-  const { from } = location?.state || { from: { pathname: '/' } };
+function LoginPage() {
+  const dispatch = useDispatch();
 
   function authListener() {
     auth.onAuthStateChanged((userAuth) => {
       const { uid } = userAuth || { uid: '' };
       if (uid) {
         dispatch(setUser({ uid }));
+
+        saveItem('user', uid);
       }
     });
   }
@@ -27,8 +27,6 @@ function LoginPage({ user, location }) {
   useEffect(() => {
     authListener();
   }, []);
-
-  if (user) return <Redirect to={from} />;
 
   return (
     <>
