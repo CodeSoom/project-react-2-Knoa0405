@@ -9,6 +9,7 @@ import {
 } from '../services/api';
 
 import { auth } from '../services/firebase';
+import { saveItem } from '../services/storage';
 
 const { actions, reducer } = createSlice({
   name: 'application',
@@ -41,7 +42,10 @@ const { actions, reducer } = createSlice({
       username: '',
       password: '',
     },
-    user: '',
+    user: {
+      uid: undefined,
+      isLoading: false,
+    },
     loginError: {
       code: '',
       message: '',
@@ -161,10 +165,14 @@ const { actions, reducer } = createSlice({
       };
     },
 
-    setUser(state, { payload: user }) {
+    setUser(state, { payload: { uid, isLoading } }) {
       return {
         ...state,
-        user,
+        user: {
+          ...state.user,
+          uid,
+          isLoading,
+        },
       };
     },
   },
@@ -217,7 +225,7 @@ export function requestSignUp() {
   return async (dispatch, getState) => {
     const { loginFields: { username, password } } = getState();
 
-    const { errorCode = '', errorMessage = '' } = await postSignUp({ username, password });
+    const { errorCode, errorMessage } = await postSignUp({ username, password });
 
     dispatch(setError({ errorCode, errorMessage }));
 
@@ -229,9 +237,7 @@ export function requestSignIn() {
   return async (dispatch, getState) => {
     const { loginFields: { username, password } } = getState();
 
-    const { errorCode = '', errorMessage = '' } = await postSignIn({ username, password });
-
-    const user = auth.currentUser;
+    const { errorCode, errorMessage } = await postSignIn({ username, password });
 
     dispatch(setError({ errorCode, errorMessage }));
 

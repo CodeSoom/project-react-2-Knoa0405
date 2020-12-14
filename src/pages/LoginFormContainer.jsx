@@ -2,22 +2,30 @@ import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
+import { Link } from 'react-router-dom';
+
 import LoginForm from './LoginForm';
 
 import {
   setLoginFields,
   requestSignUp,
   requestSignIn,
+  setUser,
 } from '../redux/slice';
+
+import { auth } from '../services/firebase';
+
+import { loadItem, clearItem } from '../services/storage';
 
 function LoginFormContainer() {
   const dispatch = useDispatch();
 
-  const { loginFields, loginError, user } = useSelector((state) => ({
+  const { loginFields, loginError } = useSelector((state) => ({
     loginFields: state.loginFields,
     loginError: state.loginError,
-    user: state.user,
   }));
+
+  const user = loadItem('user');
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -33,9 +41,20 @@ function LoginFormContainer() {
     dispatch(requestSignUp());
   }
 
+  function handleLogOut() {
+    auth.signOut();
+
+    dispatch(setUser({ uid: '' }));
+
+    clearItem('user');
+  }
+
   if (user) {
     return (
-      <p>LogOut</p>
+      <>
+        <button type="button" onClick={handleLogOut}>LogOut</button>
+        <Link to="/main">메인으로</Link>
+      </>
     );
   }
 
